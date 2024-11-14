@@ -9,5 +9,16 @@ package Estructuras;
  * @author esteacosta
  */
 public class Nodo {
+    private Persona tInfo;
+    private Nodo hijoIzq;
+    private Nodo hermanoDer;
+
+    public Nodo(Persona tInfo) {
+        this.tInfo = tInfo;
+        this.hijoIzq = null;
+        this.hermanoDer = null;
+    }
+    
+    
     
 }
