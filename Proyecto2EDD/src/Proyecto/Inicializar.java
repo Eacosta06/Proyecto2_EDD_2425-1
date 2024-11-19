@@ -41,7 +41,9 @@ public class Inicializar {
         
         for (String casa : casas){
             
-            //Debe crearse el nodo principal del árbol y el árbol
+            //Se crea el el árbol genealógico vacío
+            this.arbol = new Arbol(casa);
+            
             //Se debe crear un nuevo grafo
             
             JsonElement Json_nombres = iterable.get(casa);
@@ -62,6 +64,24 @@ public class Inicializar {
                     // convierte a un array
                     JsonElement Json_datos = Datos.get(nombre);
                     JsonArray l_datos = Json_datos.getAsJsonArray();
+                    
+                    //Aquí debe buscarse si el nodo existe, y en
+                    //caso contrario crearlo
+                    
+                    for (int j = 0; j < l_datos.size(); j++){
+                        
+                        JsonObject Propiedades = l_datos.get(j).getAsJsonObject();
+                        Set<String> properties = Propiedades.keySet();
+                        
+                        for (String dato : properties){
+                            
+                            if (dato.equals("Text Here")){
+                                
+                            }
+                            
+                        }
+                        
+                    }
                     
                 }
             }
