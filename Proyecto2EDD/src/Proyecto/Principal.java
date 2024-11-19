@@ -40,8 +40,8 @@ public class Principal extends javax.swing.JFrame {
         RespuestaTitulo = new javax.swing.JTextField();
         RespuestaNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        RespuestaGeneracion = new javax.swing.JTextField();
+        GuardarGeneracion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
@@ -99,15 +99,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel7.setText(" Buscar Generacion Completa");
 
-        jTextField1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        RespuestaGeneracion.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        RespuestaGeneracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                RespuestaGeneracionActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jButton1.setText("Guardar Generacion");
+        GuardarGeneracion.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        GuardarGeneracion.setText("Guardar Generacion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(RespuestaNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(RespuestaGeneracion, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addComponent(GuardarNombre)
@@ -148,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
                                         .addGap(149, 149, 149)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1))))
+                                        .addComponent(GuardarGeneracion))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(GuardarTitulo)
@@ -182,7 +182,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
+                    .addComponent(RespuestaGeneracion)
                     .addComponent(RespuestaNombre))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -195,7 +195,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(GuardarNombre)
-                            .addComponent(jButton1))
+                            .addComponent(GuardarGeneracion))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addGap(50, 50, 50))))
@@ -209,9 +209,9 @@ public class Principal extends javax.swing.JFrame {
         String busquedaPorTitulo = RespuestaTitulo.getText().trim();
     }//GEN-LAST:event_GuardarTituloActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void RespuestaGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RespuestaGeneracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_RespuestaGeneracionActionPerformed
 
     private void VerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroActionPerformed
         // TODO add your handling code here:
@@ -258,12 +258,13 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Consola;
+    private javax.swing.JButton GuardarGeneracion;
     private javax.swing.JButton GuardarNombre;
     private javax.swing.JButton GuardarTitulo;
+    private javax.swing.JTextField RespuestaGeneracion;
     private javax.swing.JTextField RespuestaNombre;
     private javax.swing.JTextField RespuestaTitulo;
     private javax.swing.JButton VerRegistro;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -272,6 +273,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
