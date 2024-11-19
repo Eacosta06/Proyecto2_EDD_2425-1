@@ -56,7 +56,12 @@ public class Inicializar {
                 JsonObject Datos = l_nombres.get(i).getAsJsonObject();
                 Set<String> personas = Datos.keySet();
                 
-                for (String persona : personas){
+                for (String nombre : personas){
+                    
+                    // Obtiene la lista json de datos de la persona y la
+                    // convierte a un array
+                    JsonElement Json_datos = Datos.get(nombre);
+                    JsonArray l_datos = Json_datos.getAsJsonArray();
                     
                 }
             }

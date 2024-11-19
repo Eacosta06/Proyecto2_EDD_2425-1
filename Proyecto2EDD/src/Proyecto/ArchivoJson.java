@@ -22,6 +22,8 @@ public class ArchivoJson extends javax.swing.JFrame {
     Arbol arbol;
     Nodo nodo;
     HashTable hash;
+    Mensaje mensaje;
+    Error error;
 
     /**
      * Creates new form ArchivoJson
@@ -29,6 +31,8 @@ public class ArchivoJson extends javax.swing.JFrame {
     public ArchivoJson() {
         initComponents();
         inicializar = new Inicializar();
+        //this.mensaje = new Mensaje();
+        //this.error = new Error();
     }
 
     /**
@@ -100,13 +104,14 @@ public class ArchivoJson extends javax.swing.JFrame {
                 leer.close();
                 
                 try {
-                    
+                    this.inicializar.Iniciar(Json);
+                    this.setVisible(false);
                 } catch (Exception e) {
-                    
+                    this.error.mensaje_error(2);
                 }
                 
             } else {
-                
+                this.error.mensaje_error(1);
             }
             
         } catch (IOException ex) {
