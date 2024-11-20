@@ -10,7 +10,7 @@ package Estructuras;
  */
 public class Persona {
 
-    public Persona(String nombre, String ohn, String bt, String kta, String ht, String wt, String oe, String of, String Notas, String Destino) {
+    public Persona(String nombre, String ohn, String bt, String kta, String ht, String wt, String oe, String oh, String Notas, String Destino) {
         this.nombre = nombre;
         this.ohn = ohn;
         this.bt = bt;
@@ -18,7 +18,7 @@ public class Persona {
         this.ht = ht;
         this.wt = wt;
         this.oe = oe;
-        this.of = of;
+        this.oh = oh;
         this.Notas = Notas;
         this.Destino = Destino;
     }
@@ -29,7 +29,7 @@ public class Persona {
     private String ht;
     private String wt;
     private String oe;
-    private String of;
+    private String oh;
     private String Notas;
     private String Destino;
     
@@ -40,14 +40,15 @@ public class Persona {
      * ht = Titulo ("Held title")
      * wt = Casado con ("Wed to")
      * oe = De ojos ("Of eyes")
-     * of = De pelo ("Of hair")
+     * oh = De pelo ("Of hair")
      * Notas ("Notes")
      * Destino ("Fate")
      */
     
     @Override
     public String toString() {
-        return "Nombre: " + this.nombre + "\nConocido como: " + this.kta ;
+        return "Nombre: " + this.nombre + "\nConocido como: " + this.kta + "\nEs el: " + this.ohn + " de su nombre en su familia" + "\nSu titulo es: " + this.ht+
+                "\nTiene ojos de color: " + this.oe + "y cabello color: " + this.oh;
     }
 
     public String getNombre() {
@@ -106,12 +107,12 @@ public class Persona {
         this.oe = oe;
     }
 
-    public String getOf() {
-        return of;
+    public String getOh() {
+        return oh;
     }
 
-    public void setOf(String of) {
-        this.of = of;
+    public void setOh(String oh) {
+        this.oh = oh;
     }
 
     public String getNotas() {

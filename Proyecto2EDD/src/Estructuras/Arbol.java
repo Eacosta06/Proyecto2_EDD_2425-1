@@ -56,7 +56,7 @@ public class Arbol {
         return null;
     }
     
-    public void agregarNodo (Persona persona, String ktaPadre){
+    public Nodo agregarNodo (Persona persona, String ktaPadre){
         Nodo nodoPersona = new Nodo(persona);
         if (this.esVacio()){
             pRoot = nodoPersona;
@@ -78,7 +78,7 @@ public class Arbol {
                 }
             }
         }
-        
+        return nodoPersona;
     }
     public String listaAncestros(String kta){
         Nodo aux = buscarNodo(kta, pRoot);
@@ -96,4 +96,21 @@ public class Arbol {
         }
     }
     
+    public String buscarPorNombreyMote (String nombreOMote){
+        return this.buscarPorNombreyMote(nombreOMote.toLowerCase(), this.pRoot, "");
+        
+    }
+    
+    private String buscarPorNombreyMote(String nombreOMote, Nodo root, String resultado){
+        if (root != null) {
+            if (root.gettInfo().getKta().toLowerCase().contains(nombreOMote) || root.gettInfo().getNombre().toLowerCase().contains(nombreOMote)){
+                resultado += root.gettInfo() + "\n";
+            }
+            resultado =this.buscarPorNombreyMote(nombreOMote,root.getHijoIzq(), resultado);
+            
+            resultado = this.buscarPorNombreyMote(nombreOMote,root.getHermanoDer(), resultado);
+           
+        }
+        return resultado;
+    }
 }
