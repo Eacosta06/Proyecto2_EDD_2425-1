@@ -23,7 +23,7 @@ public class main {
         Persona persona2 = new Persona ("aHelloo", "verde", "gris", "chaito", "morado", "", "", "", "", "");
         Persona persona3 = new Persona ("Holaaa", "azul", "negro", "hello", "blanco", "", "", "", "", "");
         Persona persona4 = new Persona ("epa", "gris", "dorado", "epaaaaa", "plateado", "", "", "", "", "");
-        Arbol arbol1 = new Arbol ("arbol Genealogico");
+        Arbol arbol1 = new Arbol ();
         Nodo nodoPersona1 = arbol1.agregarNodo(persona1, "");
         Nodo nodoPersona2 = arbol1.agregarNodo(persona2, "Chao");
         Nodo nodoPersona3 = arbol1.agregarNodo(persona3, "Chao");

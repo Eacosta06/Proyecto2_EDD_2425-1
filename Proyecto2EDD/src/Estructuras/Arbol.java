@@ -15,8 +15,8 @@ public class Arbol {
     private Nodo pRoot;
     private String nombre;
 
-    public Arbol(String nombre) {
-        this.nombre = nombre;
+    public Arbol() {
+        this.nombre = "";
         this.pRoot = null;
     }
 
@@ -96,15 +96,15 @@ public class Arbol {
         }
     }
     
-    public String buscarPorNombreyMote (String nombreOMote){
-        return this.buscarPorNombreyMote(nombreOMote.toLowerCase(), this.pRoot, "");
+    public Lista buscarPorNombreyMote (String nombreOMote){
+        return this.buscarPorNombreyMote(nombreOMote.toLowerCase(), this.pRoot,new Lista () );
         
     }
     
-    private String buscarPorNombreyMote(String nombreOMote, Nodo root, String resultado){
+    private Lista buscarPorNombreyMote(String nombreOMote, Nodo root, Lista resultado){
         if (root != null) {
             if (root.gettInfo().getKta().toLowerCase().contains(nombreOMote) || root.gettInfo().getNombre().toLowerCase().contains(nombreOMote)){
-                resultado += root.gettInfo() + "\n";
+                resultado.agregarALaLista(root.gettInfo().getKta());
             }
             resultado =this.buscarPorNombreyMote(nombreOMote,root.getHijoIzq(), resultado);
             
@@ -113,4 +113,23 @@ public class Arbol {
         }
         return resultado;
     }
+    
+    public Lista buscarPorTitulo (String titulo){
+        return this.buscarPorTitulo(titulo, this.pRoot, new Lista());
+        
+    }
+    
+    private Lista buscarPorTitulo(String titulo, Nodo root, Lista resultado){
+        if (root != null) {
+            if (root.gettInfo().getHt().equalsIgnoreCase(titulo)){
+                resultado.agregarALaLista(root.gettInfo().getKta());
+            }
+            resultado =this.buscarPorTitulo(titulo,root.getHijoIzq(), resultado);
+            
+            resultado = this.buscarPorTitulo(titulo,root.getHermanoDer(), resultado);
+           
+        }
+        return resultado;
+    }
+
 }
