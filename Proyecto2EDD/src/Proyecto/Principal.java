@@ -25,6 +25,8 @@ public class Principal extends javax.swing.JFrame {
         this.abrir = new ArchivoJson();
         this.error = new Error();
         this.mensaje = new Mensaje();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

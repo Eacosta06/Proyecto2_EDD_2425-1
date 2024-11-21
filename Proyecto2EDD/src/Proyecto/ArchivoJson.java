@@ -33,6 +33,8 @@ public class ArchivoJson extends javax.swing.JFrame {
         inicializar = new Inicializar();
         //this.mensaje = new Mensaje();
         //this.error = new Error();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

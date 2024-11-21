@@ -35,6 +35,8 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         tabla.agregarElemento(nodoPersona2);
         tabla.agregarElemento(nodoPersona3);
         tabla.agregarElemento(nodoPersona4);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         
     }
 

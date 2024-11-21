@@ -23,6 +23,8 @@ public class InterfazTitulo extends javax.swing.JFrame {
     public InterfazTitulo(InterfazSeleccion interfazPrincipal) {
         initComponents();
         this.interfazPrincipal = interfazPrincipal;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

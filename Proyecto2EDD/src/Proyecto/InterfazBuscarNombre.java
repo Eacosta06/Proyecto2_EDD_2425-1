@@ -23,6 +23,8 @@ public class InterfazBuscarNombre extends javax.swing.JFrame {
     public InterfazBuscarNombre(InterfazSeleccion interfazPrincipal) {
         initComponents();
         this.interfazPrincipal = interfazPrincipal;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -59,7 +61,7 @@ public class InterfazBuscarNombre extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Ingresa el nombre de la persona a buscar");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 260, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 360, -1));
 
         nombreIngresado.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         nombreIngresado.setText("Inserta el nombre o mote");
