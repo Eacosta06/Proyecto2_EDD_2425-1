@@ -15,8 +15,8 @@ public class Arbol {
     private Nodo pRoot;
     private String nombre;
 
-    public Arbol(String nombre) {
-        this.nombre = nombre;
+    public Arbol() {
+        this.nombre = "";
         this.pRoot = null;
     }
 
@@ -56,7 +56,7 @@ public class Arbol {
         return null;
     }
     
-    public void agregarNodo (Persona persona, String ktaPadre){
+    public Nodo agregarNodo (Persona persona, String ktaPadre){
         Nodo nodoPersona = new Nodo(persona);
         if (this.esVacio()){
             pRoot = nodoPersona;
@@ -78,7 +78,7 @@ public class Arbol {
                 }
             }
         }
-        
+        return nodoPersona;
     }
     public String listaAncestros(String kta){
         Nodo aux = buscarNodo(kta, pRoot);
@@ -96,4 +96,40 @@ public class Arbol {
         }
     }
     
+    public Lista buscarPorNombreyMote (String nombreOMote){
+        return this.buscarPorNombreyMote(nombreOMote.toLowerCase(), this.pRoot,new Lista () );
+        
+    }
+    
+    private Lista buscarPorNombreyMote(String nombreOMote, Nodo root, Lista resultado){
+        if (root != null) {
+            if (root.gettInfo().getKta().toLowerCase().contains(nombreOMote) || root.gettInfo().getNombre().toLowerCase().contains(nombreOMote)){
+                resultado.agregarALaLista(root.gettInfo().getKta());
+            }
+            resultado =this.buscarPorNombreyMote(nombreOMote,root.getHijoIzq(), resultado);
+            
+            resultado = this.buscarPorNombreyMote(nombreOMote,root.getHermanoDer(), resultado);
+           
+        }
+        return resultado;
+    }
+    
+    public Lista buscarPorTitulo (String titulo){
+        return this.buscarPorTitulo(titulo, this.pRoot, new Lista());
+        
+    }
+    
+    private Lista buscarPorTitulo(String titulo, Nodo root, Lista resultado){
+        if (root != null) {
+            if (root.gettInfo().getHt().equalsIgnoreCase(titulo)){
+                resultado.agregarALaLista(root.gettInfo().getKta());
+            }
+            resultado =this.buscarPorTitulo(titulo,root.getHijoIzq(), resultado);
+            
+            resultado = this.buscarPorTitulo(titulo,root.getHermanoDer(), resultado);
+           
+        }
+        return resultado;
+    }
+
 }

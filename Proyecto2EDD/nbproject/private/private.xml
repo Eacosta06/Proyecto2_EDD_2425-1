@@ -2,10 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
+<<<<<<< HEAD
             <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Estructuras/Arbol.java</file>
             <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Estructuras/Persona.java</file>
             <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Inicializar.java</file>
+=======
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazSeleccion.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazTitulo.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Principal.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazBuscarNombre.java</file>
+>>>>>>> develop
         </group>
+>>>>>>> dfcb2f2417fba3f142f7e7847f938dbb0e6cb01b
     </open-files>
 </project-private>

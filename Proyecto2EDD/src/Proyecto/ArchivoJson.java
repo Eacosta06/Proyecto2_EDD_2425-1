@@ -33,6 +33,8 @@ public class ArchivoJson extends javax.swing.JFrame {
         inicializar = new Inicializar();
         //this.mensaje = new Mensaje();
         //this.error = new Error();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -44,14 +46,14 @@ public class ArchivoJson extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
+        SeleccionarArchivo = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+        SeleccionarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser1ActionPerformed(evt);
+                SeleccionarArchivoActionPerformed(evt);
             }
         });
 
@@ -62,7 +64,7 @@ public class ArchivoJson extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(SeleccionarArchivo, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
@@ -74,14 +76,14 @@ public class ArchivoJson extends javax.swing.JFrame {
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SeleccionarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+    private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
         // TODO add your handling code here:
         
         //Se obtiene el archivo del JFileChooser
@@ -90,7 +92,7 @@ public class ArchivoJson extends javax.swing.JFrame {
         String Json = "";
         try {
             //Se obtiene el archivo del selector de archivos
-            File archivo = this.jFileChooser1.getSelectedFile();
+            File archivo = this.SeleccionarArchivo.getSelectedFile();
             
             if (archivo != null) {
                 
@@ -117,7 +119,7 @@ public class ArchivoJson extends javax.swing.JFrame {
         } catch (IOException ex) {
             this.setVisible(true);
         }
-    }//GEN-LAST:event_jFileChooser1ActionPerformed
+    }//GEN-LAST:event_SeleccionarArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +157,7 @@ public class ArchivoJson extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser SeleccionarArchivo;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

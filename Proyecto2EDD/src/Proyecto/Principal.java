@@ -25,6 +25,8 @@ public class Principal extends javax.swing.JFrame {
         this.abrir = new ArchivoJson();
         this.error = new Error();
         this.mensaje = new Mensaje();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -41,7 +43,7 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Selecciona un archivo");
 
         open.setText("Abrir Archivo");
         open.addActionListener(new java.awt.event.ActionListener() {
@@ -54,22 +56,32 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(jLabel1)
-                .addContainerGap(191, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(open, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addContainerGap(235, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> develop
                 .addGap(48, 48, 48))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
                 .addComponent(open)
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                .addComponent(jButton1)
+>>>>>>> develop
                 .addGap(32, 32, 32))
         );
 
