@@ -42,8 +42,10 @@ public class InterfazGeneracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Ingresa el numero de la generacion a buscar");
 
+        numeroIngresado.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         numeroIngresado.setText("Escribe el numero");
         numeroIngresado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +53,7 @@ public class InterfazGeneracion extends javax.swing.JFrame {
             }
         });
 
+        buscarGeneracion.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         buscarGeneracion.setText("Buscar generacion");
         buscarGeneracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,9 +62,11 @@ public class InterfazGeneracion extends javax.swing.JFrame {
         });
 
         Consola.setColumns(20);
+        Consola.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         Consola.setRows(5);
         jScrollPane1.setViewportView(Consola);
 
+        volver.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         volver.setText("Volver al inicio");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +83,7 @@ public class InterfazGeneracion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                         .addComponent(volver))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -105,7 +110,7 @@ public class InterfazGeneracion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buscarGeneracion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

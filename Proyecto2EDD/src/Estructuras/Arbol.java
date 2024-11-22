@@ -168,5 +168,33 @@ public class Arbol {
         return resultado;
     }
     
+      public Nodo buscarPorNombreyPosicion(String nombre, String Ohn) {
+        return this.buscarPorNombreyPosicion(nombre.toLowerCase(), this.pRoot);
+
+    }
+
+    private Nodo buscarPorNombreyPosicion(String nombre, Nodo root) {
+        if (root != null) {
+            if (root.gettInfo().getKta().toLowerCase().contains(nombre) && root.gettInfo().getNombre().toLowerCase().contains(nombre)) {
+                return pRoot;
+            }
+            Nodo resultado = this.buscarNodo(nombre, root.getHijoIzq());
+            resultado = this.buscarPorNombreyPosicion(nombre, root.getHijoIzq());
+            
+            if (resultado != null){
+                return resultado;
+            }
+            Nodo resultado2 = this.buscarNodo(nombre, root.getHermanoDer());
+            resultado2 = this.buscarPorNombreyPosicion(nombre, root.getHermanoDer());
+            
+            if (resultado2 != null){
+                return resultado;
+            }
+        }
+        return null;
+    }
+
+    
+    
     
 }
