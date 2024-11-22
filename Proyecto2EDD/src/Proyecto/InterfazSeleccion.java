@@ -137,10 +137,6 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buscarTituloActionPerformed
 
-<<<<<<< HEAD
-    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
-        // TODO add your handling code here:
-=======
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         Principal interfazPrincipal = new Principal(this);
@@ -160,7 +156,6 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         InterfazAntepasados interfaz = new InterfazAntepasados(this);
         interfaz.setVisible(true);
         this.setVisible(false);
->>>>>>> develop
     }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
     /**
