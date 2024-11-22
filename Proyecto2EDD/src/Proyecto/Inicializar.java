@@ -42,7 +42,8 @@ public class Inicializar {
         for (String casa : casas){
             
             //Se crea el el árbol genealógico vacío
-            this.arbol = new Arbol(casa);
+            this.arbol = new Arbol();
+            this.arbol.setNombre(casa);
             
             //Se debe crear un nuevo grafo
             
@@ -78,7 +79,7 @@ public class Inicializar {
                     String Notas = null;
                     String Destino = null;
                     
-                    Array hijos;
+                    //Array hijos;
                     
                     for (int j = 0; j < l_datos.size(); j++){
                         

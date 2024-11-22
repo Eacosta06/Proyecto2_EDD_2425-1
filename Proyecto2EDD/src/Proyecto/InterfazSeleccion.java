@@ -55,6 +55,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         buscarTitulo = new javax.swing.JButton();
         MostrarAntepasados = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,11 +85,29 @@ public class InterfazSeleccion extends javax.swing.JFrame {
 
         MostrarAntepasados.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         MostrarAntepasados.setText("Mostrar Antepasados");
+        MostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarAntepasadosActionPerformed(evt);
+            }
+        });
         Base.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jButton2.setText("Buscar una generacion");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         Base.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+
+        volver.setText("Cambiar de archivo");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+        Base.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,7 +117,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Base, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+            .addComponent(Base, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -117,6 +136,27 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         interfaz.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buscarTituloActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        // TODO add your handling code here:
+        Principal interfazPrincipal = new Principal(this);
+        interfazPrincipal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_volverActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        InterfazGeneracion interfaz = new InterfazGeneracion(this);
+        interfaz.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
+        // TODO add your handling code here:
+        InterfazAntepasados interfaz = new InterfazAntepasados(this);
+        interfaz.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,5 +200,6 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     private javax.swing.JButton buscarTitulo;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
