@@ -24,6 +24,7 @@ public class ArchivoJson extends javax.swing.JFrame {
     HashTable hash;
     Mensaje mensaje;
     Error error;
+    InterfazSeleccion seleccion;
 
     /**
      * Creates new form ArchivoJson
@@ -31,6 +32,7 @@ public class ArchivoJson extends javax.swing.JFrame {
     public ArchivoJson() {
         initComponents();
         inicializar = new Inicializar();
+        this.seleccion = new InterfazSeleccion();
         //this.mensaje = new Mensaje();
         //this.error = new Error();
         this.setLocationRelativeTo(null);
@@ -108,6 +110,8 @@ public class ArchivoJson extends javax.swing.JFrame {
                 try {
                     this.inicializar.Iniciar(Json);
                     this.setVisible(false);
+                    this.seleccion.setVisible(true);
+                    
                 } catch (Exception e) {
                     this.error.mensaje_error(2);
                 }

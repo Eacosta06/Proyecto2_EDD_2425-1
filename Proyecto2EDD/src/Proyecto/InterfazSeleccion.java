@@ -84,6 +84,11 @@ public class InterfazSeleccion extends javax.swing.JFrame {
 
         MostrarAntepasados.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         MostrarAntepasados.setText("Mostrar Antepasados");
+        MostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MostrarAntepasadosActionPerformed(evt);
+            }
+        });
         Base.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
@@ -117,6 +122,10 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         interfaz.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buscarTituloActionPerformed
+
+    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
     /**
      * @param args the command line arguments
