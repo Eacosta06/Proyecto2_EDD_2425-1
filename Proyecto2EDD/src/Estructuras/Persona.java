@@ -131,5 +131,15 @@ public class Persona {
         this.Destino = Destino;
     }
     
-    
+    public void agregarData(String ohn, String bt, String kta, String ht, String wt, String oe, String oh, String Notas, String Destino){
+        this.ohn = ohn;
+        this.bt = bt;
+        this.kta = kta;
+        this.ht = ht;
+        this.wt = wt;
+        this.oe = oe;
+        this.oh = oh;
+        this.Notas = Notas;
+        this.Destino = Destino;
+    }
 }

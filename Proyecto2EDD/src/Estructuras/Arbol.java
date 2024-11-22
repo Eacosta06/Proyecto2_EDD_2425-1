@@ -56,6 +56,23 @@ public class Arbol {
         return null;
     }
     
+    public Nodo buscarNombreNull(String nombre, Nodo root){
+        if (root != null) {
+            if (root.gettInfo().getKta().equalsIgnoreCase(nombre)){
+                return root;
+            }
+            Nodo respuesta =this.buscarNombreNull(nombre,root.getHijoIzq());
+            if (respuesta != null & root.gettInfo().getKta() == null){
+                return respuesta;
+            }
+            Nodo respuesta2 = this.buscarNombreNull(nombre, root.getHermanoDer());
+            if (respuesta != null & root.gettInfo().getKta() == null){
+                return respuesta2;
+            }
+        }
+        return null;
+    }
+    
     public Nodo agregarNodo (Persona persona, String ktaPadre){
         Nodo nodoPersona = new Nodo(persona);
         if (this.esVacio()){
@@ -130,6 +147,18 @@ public class Arbol {
            
         }
         return resultado;
+    }
+    
+    public Nodo buscarYretornar(String name, String kta){
+        Nodo encontrado;
+        if (pRoot == null){
+            return null;
+        }
+        encontrado = this.buscarNodo(kta, pRoot);
+        if (encontrado == null){
+            encontrado = this.buscarNombreNull(name, pRoot);
+        }
+        return encontrado;
     }
 
 }

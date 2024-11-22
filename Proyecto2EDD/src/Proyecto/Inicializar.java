@@ -45,6 +45,8 @@ public class Inicializar {
             this.arbol = new Arbol(casa);
             
             //Se debe crear un nuevo grafo
+            System.setProperty("org.graphstream.ui", "swing");
+            grafo = new MultiGraph(casa);
             
             JsonElement Json_nombres = iterable.get(casa);
             JsonArray l_nombres = Json_nombres.getAsJsonArray();
@@ -78,14 +80,13 @@ public class Inicializar {
                     String Notas = null;
                     String Destino = null;
                     
-                    Array hijos;
-                    
+                    //Se recorren todos los datos de la persona
                     for (int j = 0; j < l_datos.size(); j++){
                         
                         JsonObject Propiedades = l_datos.get(j).getAsJsonObject();
                         Set<String> properties = Propiedades.keySet();
                         
-                        
+                        //Se obtienen los datos usando las llaves y se asignan
                         for (String dato : properties){
                             
                             //Se obtienen los datos del JsonObject y se
@@ -125,13 +126,18 @@ public class Inicializar {
                                 
                                 //Se itera la lista y se pasan los nombres a
                                 // un array de Strings
-                                
+                                String hAnterior;
+                                /*
+                                Cuando se haga el recorrido, se debe confirmar
+                                si cada hijo existe o no. También se verifica
+                                el Wed to, buscando ese nodo primero antes que los
+                                hijos. Así el hijo izquierdo del wed to es el
+                                hijo izquierdo del nodo.
+                                */
                             }
-                            
                             
                         }
                         
-                       
                     }
                     
                     if (this.arbol.esVacio()){
@@ -139,7 +145,12 @@ public class Inicializar {
                         Nperson = new Nodo(person);
                         this.arbol.setpRoot(Nperson);
                     } else {
-                        
+                        Nperson = this.arbol.buscarYretornar(nombre, kta);
+                        if (Nperson == null){
+                            //return null;
+                        } else {
+                            Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                        }
                     }
                 }
             }
