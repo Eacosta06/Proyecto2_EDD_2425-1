@@ -33,7 +33,7 @@ public class Inicializar {
         while (aux != null){
             String name;
             name = this.Generacion(aux);
-            Edge borde = grafo.addEdge(name+padre, name, padre);
+            Edge borde = grafo.addEdge(name+" & "+padre, padre, name);
         }
     }
     
@@ -189,23 +189,30 @@ public class Inicializar {
                                     Hnombre = Hnombre+" "+apellido;
                                     
                                     String generacion = null;
+                                    String g2 = null;
                                     Persona hijo;
                                     
                                     if (Hnombre.equals(nombre)){
                                         
                                         if (ohn.equals("First")){
                                             generacion = "Second";
+                                            g2 = " II";
                                         } else if (ohn.equals("Second")){
                                             generacion = "Third";
+                                            g2 = " III";
                                         } else if (ohn.equals("Third")){
                                             generacion = "Fourth";
+                                            g2 = " IV";
                                         }
                                     } else {
                                         generacion = "First";
+                                        g2 = null;
                                     }
                                     
                                     hijo = new Persona(Hnombre, generacion, null, null, null, null, null, null, null, null);
                                     child = new Nodo(hijo);
+                                    Node node = grafo.addNode(Hnombre+g2);
+                                    node.setAttribute("ui.label", Hnombre+g2);
                                     
                                     if (hAnterior == null){
                                         //Se asigna child como el primer hijo
@@ -229,16 +236,21 @@ public class Inicializar {
                         Nperson = new Nodo(person);
                         Nperson.setHijoIzq(hijo_izq);
                         this.arbol.setpRoot(Nperson);
-                        Node nodo = grafo.addNode(nombre);
+                        Node node = grafo.addNode(nombre);
+                        node.setAttribute("ui.label", nombre);
                     } else {
-                        Nperson = this.arbol.buscarNombreOhn(nombre, bornto, ohn);
+                        Nperson = this.arbol.buscarNombreOhn(nombre, this.arbol.getpRoot(), ohn);
                         if (Nperson == null){
                             Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson = new Nodo(person);
                             Nperson.setHijoIzq(hijo_izq);
-                            Node nodo = grafo.addNode(this.Generacion(Nperson));
+                            Node node = grafo.addNode(this.Generacion(Nperson));
+                            node.setAttribute("ui.label", this.Generacion(Nperson));
                             this.NodosHijos(hijo_izq, this.Generacion(Nperson));
-                            this.arbol.AnadirHijo(bornto, Nperson);
+<<<<<<< HEAD
+                            //this.arbol.AnadirHijo(bornto, Nperson);
+=======
+>>>>>>> c4b73b800cc2b6b364c3989c16ce6adbad763ed4
                         } else {
                             Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson.setHijoIzq(hijo_izq);
