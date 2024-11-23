@@ -5,6 +5,7 @@
 package Proyecto;
 
 import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
 import com.google.gson.*;
 import java.util.Set;
 import Estructuras.*;

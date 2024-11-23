@@ -1,9 +1,11 @@
 package Proyecto;
 
 
+import Estructuras.Arbol;
 import Estructuras.HashTable;
-import Proyecto.ArchivoJson;
-import Proyecto.Mensaje;
+import Estructuras.Nodo;
+import java.io.*;
+import org.graphstream.graph.Graph;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,14 +17,17 @@ import Proyecto.Mensaje;
  * @author maria
  */
 public class Principal extends javax.swing.JFrame {
-    ArchivoJson abrir;
-    Error error;
+    Inicializar inicializar;
+    Graph grafo;
+    Arbol arbol;
+    Nodo nodo;
+    HashTable hash;
     Mensaje mensaje;
-    InterfazSeleccion interfasSeleccion;
+    Error error;
+    InterfazSeleccion interfasSeleccion = null;
 
     public Principal(InterfazSeleccion interfazSeleccion) {
         initComponents();
-        this.abrir = new ArchivoJson();
         this.error = new Error();
         this.mensaje = new Mensaje();
         this.setLocationRelativeTo(null);
@@ -40,13 +45,13 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         Base = new javax.swing.JPanel();
-        jFileChooser1 = new javax.swing.JFileChooser();
+        SeleccionarArchivo = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+        SeleccionarArchivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFileChooser1ActionPerformed(evt);
+                SeleccionarArchivoActionPerformed(evt);
             }
         });
 
@@ -56,13 +61,13 @@ public class Principal extends javax.swing.JFrame {
             BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BaseLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SeleccionarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         BaseLayout.setVerticalGroup(
             BaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BaseLayout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SeleccionarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -82,11 +87,47 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+    private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
         // TODO add your handling code here:
-       this.interfasSeleccion.setVisible(true);
-       this.dispose();
-    }//GEN-LAST:event_jFileChooser1ActionPerformed
+        //Se obtiene el archivo del JFileChooser
+        this.setVisible(false);
+        String aux;
+        String Json = "";
+        try {
+            //Se obtiene el archivo del selector de archivos
+            File archivo = this.SeleccionarArchivo.getSelectedFile();
+            
+            if (archivo != null) {
+                
+                FileReader lectura = new FileReader(archivo);
+                BufferedReader leer = new BufferedReader(lectura);
+                
+                while ((aux = leer.readLine()) != null){
+                    Json += aux += "\n";
+                }
+                
+                leer.close();
+                
+                try {
+                    //Se ejecuta inicializar con el texto del Json
+                    this.inicializar.Iniciar(Json);
+                    this.setVisible(false);
+                    
+                    this.interfasSeleccion.setVisible(true);
+                    this.dispose();
+                    
+                } catch (Exception e) {
+                    this.error.mensaje_error(2);
+                }
+                
+            } else {
+                this.error.mensaje_error(1);
+            }
+            
+        } catch (IOException ex) {
+            this.setVisible(true);
+        }
+    }//GEN-LAST:event_SeleccionarArchivoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +166,6 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Base;
-    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JFileChooser SeleccionarArchivo;
     // End of variables declaration//GEN-END:variables
 }
