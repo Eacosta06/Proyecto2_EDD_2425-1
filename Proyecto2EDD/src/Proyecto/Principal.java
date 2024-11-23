@@ -31,6 +31,7 @@ public class Principal extends javax.swing.JFrame {
         this.error = new Error();
         this.mensaje = new Mensaje();
         this.setLocationRelativeTo(null);
+        this.inicializar = new Inicializar();
         this.setResizable(false);
         if (this.interfasSeleccion == null){
             this.interfasSeleccion = new InterfazSeleccion ();
@@ -38,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
         else {this.interfasSeleccion = interfazSeleccion;
         
         }
+        
     }
         
     @SuppressWarnings("unchecked")
@@ -120,7 +122,9 @@ public class Principal extends javax.swing.JFrame {
                     this.setVisible(false);
                     
                     this.interfasSeleccion.setVisible(true);
-                    this.dispose();
+                    
+                    this.EstablecerValores();
+                    //this.dispose();
                     
                 } catch (Exception e) {
                     this.error.mensaje_error(2);
