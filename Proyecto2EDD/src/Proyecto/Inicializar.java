@@ -81,10 +81,6 @@ public class Inicializar {
             JsonElement Json_nombres = iterable.get(casa);
             JsonArray l_nombres = Json_nombres.getAsJsonArray();
             
-            //Se establece un grafo vacío.
-            System.setProperty("org.graphstream.ui", "swing");
-            //grafo = new MultiGraph(casa);
-            
             for (int i = 0; i < l_nombres.size(); i++){
                 
                 JsonObject Datos = l_nombres.get(i).getAsJsonObject();
@@ -111,6 +107,7 @@ public class Inicializar {
                     String Destino = null;
                     Nodo bornto = null;
                     Nodo hijo_izq = null;
+                    NodoLista wed;
                     
                     //Se recorren todos los datos de la persona
                     for (int j = 0; j < l_datos.size(); j++){
@@ -135,10 +132,10 @@ public class Inicializar {
                                     /*
                                     String[] l = bt.split(", ");
                                     //Se separa el string 2
-                                    String[] Gen = l[2].split(" ");
-                                    bornto = this.arbol.buscarYretornar(l[1], Gen[1], 1);
+                                    String[] Gen = l[1].split(" ");
+                                    bornto = this.arbol.buscarYretornar(l[0], Gen[0], 1);
                                     if (bornto == null){
-                                        bornto = this.arbol.buscarYretornar(l[1], Gen[1], 2);
+                                        bornto = this.arbol.buscarYretornar(l[0], Gen[0], 2);
                                     }
                                     */
                                 }
@@ -152,6 +149,12 @@ public class Inicializar {
                             } else if (dato.equals("Wed to")){
                                 wt = Propiedades.get(dato).getAsString();
                                 
+                                //Se revisa que la lista de casados no sea vacía
+                                if (this.weds.getPrimero() == null){
+                                    wed = new NodoLista(wt);
+                                } else {
+                                    //Se busca en la lista
+                                }
                                 
                             } else if (dato.equals("Of eyes")){
                                 oe = Propiedades.get(dato).getAsString();
@@ -176,7 +179,7 @@ public class Inicializar {
                                 
                                 //Se obtiene el apellido de la persona
                                 String[] Snombre = nombre.split(" ");
-                                String apellido = Snombre[2];
+                                String apellido = Snombre[1];
                                 String Hnombre;
                                 
                                 //Se recorre el JsonArray de hijos
