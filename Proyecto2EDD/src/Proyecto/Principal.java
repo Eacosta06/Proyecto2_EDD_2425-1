@@ -33,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.inicializar = new Inicializar();
         this.setResizable(false);
+        
         if (this.interfasSeleccion == null){
             this.interfasSeleccion = new InterfazSeleccion ();
         }
