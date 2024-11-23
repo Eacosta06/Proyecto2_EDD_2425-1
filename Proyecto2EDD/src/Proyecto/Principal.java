@@ -87,6 +87,12 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void EstablecerValores(){
+        arbol = this.inicializar.getArbol();
+        hash = this.inicializar.getHash();
+        grafo = this.inicializar.getGrafo();
+    }
+    
     private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
         // TODO add your handling code here:
         //Se obtiene el archivo del JFileChooser

@@ -28,7 +28,30 @@ public class Inicializar {
     public Inicializar() {
     }
     
+    public void NodosHijos(Nodo hijo_izq, String padre){
+        Nodo aux = hijo_izq;
+        while (aux != null){
+            String name;
+            name = this.Generacion(aux);
+            Edge borde = grafo.addEdge(name+padre, name, padre);
+        }
+    }
     
+    public String Generacion(Nodo persona){
+        String generacion = null;
+        String ohn = persona.gettInfo().getOhn();
+        String nombre = persona.gettInfo().getNombre();
+        if (ohn.equals("First")){
+            generacion = nombre;
+        } else if (ohn.equals("Second")){
+            generacion = nombre+" II";
+        } else if (ohn.equals("Third")){
+            generacion = nombre+" III";
+        } else {
+            generacion = nombre+" IV";
+        }
+        return generacion;
+    }
     
     public void Iniciar(String JsonString){
         
@@ -197,16 +220,20 @@ public class Inicializar {
                         Nperson = new Nodo(person);
                         Nperson.setHijoIzq(hijo_izq);
                         this.arbol.setpRoot(Nperson);
+                        Node nodo = grafo.addNode(nombre);
                     } else {
                         Nperson = this.arbol.buscarNombreOhn(nombre, bornto, ohn);
                         if (Nperson == null){
                             Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson = new Nodo(person);
                             Nperson.setHijoIzq(hijo_izq);
+                            Node nodo = grafo.addNode(this.Generacion(Nperson));
+                            this.NodosHijos(hijo_izq, this.Generacion(Nperson));
                             this.arbol.AnadirHijo(bornto, Nperson);
                         } else {
                             Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson.setHijoIzq(hijo_izq);
+                            this.NodosHijos(hijo_izq, nombre);
                         }
                     }
                 }
@@ -215,13 +242,19 @@ public class Inicializar {
             
         }
     }
-    
-    public Graph retornar_grafo(){
+
+    public Graph getGrafo() {
         return grafo;
     }
-    
-    public Arbol retornar_arbol(){
+
+    public Arbol getArbol() {
         return arbol;
     }
+
+    public HashTable getHash() {
+        return hash;
+    }
+    
+    
     
 }
