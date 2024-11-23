@@ -43,7 +43,8 @@ public class Inicializar {
         for (String casa : casas){
             
             //Se crea el el árbol genealógico vacío
-            this.arbol = new Arbol(casa);
+            this.arbol = new Arbol();
+            this.arbol.setNombre(casa);
             
             //Se debe crear un nuevo grafo
             System.setProperty("org.graphstream.ui", "swing");
