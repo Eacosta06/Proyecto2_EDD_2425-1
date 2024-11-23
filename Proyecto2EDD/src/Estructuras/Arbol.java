@@ -56,17 +56,34 @@ public class Arbol {
         return null;
     }
     
-    public Nodo buscarNombreNull(String nombre, Nodo root){
+    public Nodo buscarNombreOhn(String nombre, Nodo root, String ohn){
         if (root != null) {
-            if (root.gettInfo().getKta().equalsIgnoreCase(nombre)){
+            if (root.gettInfo().getNombre().equalsIgnoreCase(nombre) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)){
                 return root;
             }
-            Nodo respuesta =this.buscarNombreNull(nombre,root.getHijoIzq());
-            if (respuesta != null & root.gettInfo().getKta() == null){
+            Nodo respuesta =this.buscarNombreOhn(nombre,root.getHijoIzq(), ohn);
+            if (respuesta != null){
                 return respuesta;
             }
-            Nodo respuesta2 = this.buscarNombreNull(nombre, root.getHermanoDer());
-            if (respuesta != null & root.gettInfo().getKta() == null){
+            Nodo respuesta2 = this.buscarNombreOhn(nombre, root.getHermanoDer(), ohn);
+            if (respuesta != null){
+                return respuesta2;
+            }
+        }
+        return null;
+    }
+    
+    public Nodo buscarKtaOhn(String kta, Nodo root, String ohn){
+        if (root != null) {
+            if (root.gettInfo().getKta().equalsIgnoreCase(kta) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)){
+                return root;
+            }
+            Nodo respuesta =this.buscarKtaOhn(kta,root.getHijoIzq(), ohn);
+            if (respuesta != null){
+                return respuesta;
+            }
+            Nodo respuesta2 = this.buscarKtaOhn(kta, root.getHermanoDer(), ohn);
+            if (respuesta != null){
                 return respuesta2;
             }
         }
@@ -149,16 +166,26 @@ public class Arbol {
         return resultado;
     }
     
-    public Nodo buscarYretornar(String name, String kta){
+    public Nodo buscarYretornar(String name, String ohn, int n){
         Nodo encontrado;
         if (pRoot == null){
             return null;
         }
-        encontrado = this.buscarNodo(kta, pRoot);
-        if (encontrado == null){
-            encontrado = this.buscarNombreNull(name, pRoot);
+        if (n == 1){
+            encontrado = this.buscarNombreOhn(name, pRoot, ohn);
+        } else {
+            encontrado = this.buscarKtaOhn(name, pRoot, ohn);
         }
+        
         return encontrado;
+    }
+    
+    public void AnadirHijo(Nodo root, Nodo persona){
+        Nodo aux = root.getHijoIzq();
+        while (aux.getHermanoDer() != null){
+            aux = aux.getHermanoDer();
+        }
+        aux.setHermanoDer(persona);
     }
 
 }

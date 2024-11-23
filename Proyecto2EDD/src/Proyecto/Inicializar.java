@@ -22,6 +22,7 @@ public class Inicializar {
     Arbol arbol;
     Nodo nodo;
     HashTable hash;
+    Lista weds;
 
     public Inicializar() {
     }
@@ -79,6 +80,8 @@ public class Inicializar {
                     String of = null;
                     String Notas = null;
                     String Destino = null;
+                    Nodo bornto = null;
+                    Nodo hijo_izq = null;
                     
                     //Se recorren todos los datos de la persona
                     for (int j = 0; j < l_datos.size(); j++){
@@ -96,6 +99,18 @@ public class Inicializar {
                                 
                             } else if (dato.equals("Born to")){
                                 bt = Propiedades.get(dato).getAsString();
+                                //Se comprueba que se conozca el padre
+                                
+                                if (!bt.equals("[Unknown]")){
+                                    //Se separa el string obtenido en un array
+                                    String[] l = bt.split(", ");
+                                    //Se separa el string 2
+                                    String[] Gen = l[2].split(" ");
+                                    bornto = this.arbol.buscarYretornar(l[1], Gen[1], 1);
+                                    if (bornto == null){
+                                        bornto = this.arbol.buscarYretornar(l[1], Gen[1], 2);
+                                    }
+                                }
                                 
                             } else if (dato.equals("Known throughout as")){
                                 kta = Propiedades.get(dato).getAsString();
@@ -105,6 +120,7 @@ public class Inicializar {
                                 
                             } else if (dato.equals("Wed to")){
                                 wt = Propiedades.get(dato).getAsString();
+                                
                                 
                             } else if (dato.equals("Of eyes")){
                                 oe = Propiedades.get(dato).getAsString();
@@ -124,16 +140,50 @@ public class Inicializar {
                                 JsonElement Json_hijos = Propiedades.get(dato);
                                 JsonArray l_hijos = Json_hijos.getAsJsonArray();
                                 
-                                //Se itera la lista y se pasan los nombres a
-                                // un array de Strings
-                                String hAnterior;
-                                /*
-                                Cuando se haga el recorrido, se debe confirmar
-                                si cada hijo existe o no. También se verifica
-                                el Wed to, buscando ese nodo primero antes que los
-                                hijos. Así el hijo izquierdo del wed to es el
-                                hijo izquierdo del nodo.
-                                */
+                                Nodo hAnterior = null;
+                                Nodo child;
+                                
+                                //Se obtiene el apellido de la persona
+                                String[] Snombre = nombre.split(" ");
+                                String apellido = Snombre[2];
+                                String Hnombre;
+                                
+                                //Se recorre el JsonArray de hijos
+                                for (int z = 0; z < l_hijos.size(); z++){
+                                    //Se obtiene el nombre y se le agrega el apellido
+                                    Hnombre = l_hijos.get(z).getAsString();
+                                    Hnombre = Hnombre+" "+apellido;
+                                    
+                                    String generacion = null;
+                                    Persona hijo;
+                                    
+                                    if (Hnombre.equals(nombre)){
+                                        
+                                        if (ohn.equals("First")){
+                                            generacion = "Second";
+                                        } else if (ohn.equals("Second")){
+                                            generacion = "Third";
+                                        } else if (ohn.equals("Third")){
+                                            generacion = "Fourth";
+                                        }
+                                    } else {
+                                        generacion = "First";
+                                    }
+                                    
+                                    hijo = new Persona(Hnombre, generacion, null, null, null, null, null, null, null, null);
+                                    child = new Nodo(hijo);
+                                    
+                                    if (hAnterior == null){
+                                        //Se asigna child como el primer hijo
+                                        hAnterior = child;
+                                        hijo_izq = child;
+                                    } else {
+                                        //Se asigna child como un hijo derecho
+                                        hAnterior.setHermanoDer(child);
+                                        hAnterior = child;
+                                    }
+                                    
+                                }
                             }
                             
                         }
@@ -143,13 +193,18 @@ public class Inicializar {
                     if (this.arbol.esVacio()){
                         Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                         Nperson = new Nodo(person);
+                        Nperson.setHijoIzq(hijo_izq);
                         this.arbol.setpRoot(Nperson);
                     } else {
-                        Nperson = this.arbol.buscarYretornar(nombre, kta);
+                        Nperson = this.arbol.buscarNombreOhn(nombre, bornto, ohn);
                         if (Nperson == null){
-                            //return null;
+                            Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                            Nperson = new Nodo(person);
+                            Nperson.setHijoIzq(hijo_izq);
+                            this.arbol.AnadirHijo(bornto, Nperson);
                         } else {
                             Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                            Nperson.setHijoIzq(hijo_izq);
                         }
                     }
                 }
