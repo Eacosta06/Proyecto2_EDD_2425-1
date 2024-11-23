@@ -70,6 +70,10 @@ public class Inicializar {
             this.arbol = new Arbol();
             this.arbol.setNombre(casa);
             
+            //Se crea la lista de parejas. Estas no pueden ser accedidas desde
+            //el árbol genealógico por limitaciones de la estructura
+            this.weds = new Lista();
+            
             //Se debe crear un nuevo grafo
             System.setProperty("org.graphstream.ui", "swing");
             grafo = new MultiGraph(casa);
@@ -128,6 +132,7 @@ public class Inicializar {
                                 
                                 if (!bt.equals("[Unknown]")){
                                     //Se separa el string obtenido en un array
+                                    /*
                                     String[] l = bt.split(", ");
                                     //Se separa el string 2
                                     String[] Gen = l[2].split(" ");
@@ -135,6 +140,7 @@ public class Inicializar {
                                     if (bornto == null){
                                         bornto = this.arbol.buscarYretornar(l[1], Gen[1], 2);
                                     }
+                                    */
                                 }
                                 
                             } else if (dato.equals("Known throughout as")){
