@@ -293,7 +293,61 @@ public class Arbol {
         return grafo;
     }
     
+    private boolean buscarNodo(Nodo root, Nodo buscar){
+        /*
+        esta función busca un nodo específico dentro del árbol
+        */
+        boolean encontrado;
+        if (root == buscar){
+            encontrado = true;
+        } else {
+            encontrado = buscarNodo(root.getHijoIzq(), buscar);
+            if (!encontrado){
+                encontrado = buscarNodo(root.getHermanoDer(), buscar);
+            }
+        }
+        return encontrado;
+    }
     
+    private Graph GrafoAncestro(Nodo root, Graph grafo, Nodo buscar, String padre){
+        /*
+        Esta función crea nodos y bordes en graphstream para los nodos padre
+        de un nodo dado
+        */
+        String name = root.gettInfo().getNombre();
+        String generacion = root.gettInfo().getOhn();
+        if (generacion.equals("First")){
+            generacion = null;
+        } else if (generacion.equals("Second")){
+            generacion = " II";
+        } else if (generacion.equals("Third")) {
+            generacion = " III";
+        } else {
+            generacion = " IV";
+        }
+        
+        name = name+generacion;
+        
+        if (buscarNodo(root, buscar)){
+            Node nodo = grafo.addNode(name);
+            if (padre != null){
+                Edge edge = grafo.addEdge(name, padre, name);
+            }
+            if (buscarNodo(root.getHijoIzq(), buscar)){
+                grafo = GrafoAncestro(root.getHijoIzq(), grafo, buscar, name);
+            } else if (buscarNodo(root.getHermanoDer(), buscar)){
+                grafo = GrafoAncestro(root.getHijoIzq(), grafo, buscar, name);
+            }
+        }
+        
+        return grafo;
+    }
+    
+    public Graph grafoAncestro (Nodo root, Graph grafo, Nodo buscar){
+        
+        grafo = GrafoAncestro(root, grafo, buscar, null);
+        return grafo;
+    }
     
     
 }
