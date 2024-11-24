@@ -5,6 +5,7 @@ import Estructuras.Arbol;
 import Estructuras.HashTable;
 import Estructuras.Nodo;
 import java.io.*;
+import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
 
 /*
@@ -20,16 +21,12 @@ public class Principal extends javax.swing.JFrame {
     Inicializar inicializar;
     Graph grafo;
     Arbol arbol;
-    Nodo nodo;
-    HashTable hash;
-    Mensaje mensaje;
     Error error;
     InterfazSeleccion interfasSeleccion = null;
 
     public Principal(InterfazSeleccion interfazSeleccion) {
         initComponents();
         this.error = new Error();
-        this.mensaje = new Mensaje();
         this.setLocationRelativeTo(null);
         this.inicializar = new Inicializar();
         this.setResizable(false);
@@ -92,7 +89,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void EstablecerValores(){
         arbol = this.inicializar.getArbol();
-        hash = this.inicializar.getHash();
         grafo = this.inicializar.getGrafo();
     }
     
@@ -122,10 +118,11 @@ public class Principal extends javax.swing.JFrame {
                     this.inicializar.Iniciar(Json);
                     this.setVisible(false);
                     
+                    this.interfasSeleccion.establecerValores(arbol, grafo);
                     this.interfasSeleccion.setVisible(true);
-                    
                     this.EstablecerValores();
-                    //this.dispose();
+                    JOptionPane.showMessageDialog(null, "Árbol generado de manera exitosa");
+                    this.dispose();
                     
                 } catch (Exception e) {
                     this.error.mensaje_error(2);

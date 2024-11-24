@@ -21,8 +21,6 @@ import Estructuras.*;
 public class Inicializar {
     Graph grafo;
     Arbol arbol;
-    Nodo nodo;
-    HashTable hash;
     Lista weds;
 
     public Inicializar() {
@@ -290,10 +288,6 @@ public class Inicializar {
 
     public Arbol getArbol() {
         return arbol;
-    }
-
-    public HashTable getHash() {
-        return hash;
     }
     
     
