@@ -5,6 +5,8 @@
 package Estructuras;
 
 import javax.swing.JOptionPane;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
 
 /**
  *
@@ -43,7 +45,7 @@ public class Arbol {
 
     public Nodo buscarNodo(String kta, Nodo root) {
         if (root != null) {
-            if (root.gettInfo().getKta().equalsIgnoreCase(kta)) {
+            if (root.gettInfo().getKta().equalsIgnoreCase(kta) || root.gettInfo().getWt().equalsIgnoreCase(kta)){
                 return root;
             }
             Nodo respuesta = this.buscarNodo(kta, root.getHijoIzq());
@@ -51,7 +53,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarNodo(kta, root.getHermanoDer());
-            if (respuesta != null) {
+            if (respuesta2 != null) {
                 return respuesta2;
             }
         }
@@ -68,7 +70,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarNombreOhn(nombre, root.getHermanoDer(), ohn);
-            if (respuesta != null){
+            if (respuesta2 != null){
                 return respuesta2;
             }
         }
@@ -85,7 +87,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarKtaOhn(kta, root.getHermanoDer(), ohn);
-            if (respuesta != null){
+            if (respuesta2 != null){
                 return respuesta2;
             }
         }
@@ -250,6 +252,44 @@ public class Arbol {
         return null;
     }
 
+    private Graph crearGrafo (Nodo root, boolean primeraLlamada, Graph grafo, String padre){
+        String nombre = root.gettInfo().getNombre();
+        String generacion = root.gettInfo().getOhn();
+        if (generacion.equals("First")){
+            generacion = null;
+        } else if (generacion.equals("Second")){
+            generacion = " II";
+        } else if (generacion.equals("Third")) {
+            generacion = " III";
+        } else {
+            generacion = " IV";
+        }
+        if (root != null && !primeraLlamada){
+            //Agregar el nodo al grafo de graphstream
+            Node node = grafo.addNode(nombre+generacion);
+            node.setAttribute("ui.label", nombre+generacion);
+            Edge edge = grafo.addEdge(nombre+generacion, padre, nombre+generacion);
+            
+            //Se llama al hermano derecho con el mismo padre
+            grafo = crearGrafo(root.getHermanoDer(), false, grafo, padre);
+            //Se cambia el padre al nodo actual y se llama a sus hijos
+            padre = nombre+generacion;
+            grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
+            
+        } else {
+            Node node = grafo.addNode(nombre+generacion);
+            padre = nombre+generacion;
+            grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
+        }
+        return grafo;
+    }
+    
+    public Graph crearGrafo (Nodo root, Graph grafo){
+        //Se hace el primer llamado a la funcion;
+        grafo = crearGrafo(root, true, grafo, null);
+        return grafo;
+    }
+    
     
     
     
