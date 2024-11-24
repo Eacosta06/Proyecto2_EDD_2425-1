@@ -4,6 +4,7 @@
  */
 package Estructuras;
 
+import Proyecto.InterfazSeleccion;
 import javax.swing.JOptionPane;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
@@ -253,6 +254,7 @@ public class Arbol {
     }
 
     private Graph crearGrafo (Nodo root, boolean primeraLlamada, Graph grafo, String padre){
+        
         String nombre = root.gettInfo().getNombre();
         String generacion = root.gettInfo().getOhn();
         if (generacion.equals("First")){
@@ -281,6 +283,7 @@ public class Arbol {
             padre = nombre+generacion;
             grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
         }
+        
         return grafo;
     }
     

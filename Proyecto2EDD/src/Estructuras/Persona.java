@@ -47,8 +47,8 @@ public class Persona {
     
     @Override
     public String toString() {
-        return "Nombre: " + this.nombre + "\nConocido como: " + this.kta + "\nEs el: " + this.ohn + " de su nombre en su familia" + "\nSu titulo es: " + this.ht+
-                "\nTiene ojos de color: " + this.oe + "y cabello color: " + this.oh;
+        return "Name: " + this.nombre + "\nNickname: " + this.kta + "\nIs the: " + this.ohn + " with his name in the family" + "\nHeld Title: " + this.ht+
+                "\nEye Color: " + this.oe + "\nHair color: " + this.oh + "\nHis father is: " + this.bt + "\nMarried to: " + this.wt; 
     }
 
     public String getNombre() {
