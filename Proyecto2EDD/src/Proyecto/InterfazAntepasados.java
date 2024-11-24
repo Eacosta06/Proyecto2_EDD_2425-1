@@ -8,6 +8,8 @@ import Estructuras.Lista;
 import Estructuras.Nodo;
 import Estructuras.NodoLista;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.*;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class InterfazAntepasados extends javax.swing.JFrame {
     private InterfazSeleccion interfazSeleccion;
+    private Graph grafo;
     /**
      * Creates new form InterfazAntepasados
      * @param interfazSeleccion
@@ -152,6 +155,8 @@ public class InterfazAntepasados extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         this.interfazSeleccion.setVisible(true);
+        this.grafo.display(false);
+        this.grafo.clear();
         this.dispose();
     }//GEN-LAST:event_volverActionPerformed
 
@@ -179,7 +184,9 @@ public class InterfazAntepasados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona una de las opciones");
         } else {
             Nodo respuesta = InterfazSeleccion.tabla.buscarPorKta(respuestaAntepasado.toString());
-
+            //Se debe hacer una función de recorrido
+            this.grafo = this.interfazSeleccion.arbol.grafoAncestro(interfazSeleccion.arbol.getpRoot(), grafo, respuesta);
+            grafo.display();
         }
     }//GEN-LAST:event_mostrarArbolActionPerformed
 
