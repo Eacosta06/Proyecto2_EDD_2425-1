@@ -3,27 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/main.java</file>
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazAntepasados.java</file>
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/Persona.java</file>
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Principal.java</file>
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/ArchivoJson.java</file>
-            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazBuscarNombre.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazSeleccion.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazTitulo.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/Arbol.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazAntepasados.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Inicializar.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/Persona.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Principal.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazGeneracion.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazBuscarNombre.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/HashTable.java</file>
             <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/HashTableNode.java</file>
-=======
-            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Estructuras/Arbol.java</file>
-            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Estructuras/Persona.java</file>
-            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Inicializar.java</file>
-            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Estructuras/Lista.java</file>
-            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Principal.java</file>
->>>>>>> d4217b68ea503829e07354f0efe9dc80ccaba6ea
         </group>
     </open-files>
 </project-private>

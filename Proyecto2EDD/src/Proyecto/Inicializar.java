@@ -42,11 +42,11 @@ public class Inicializar {
         String generacion = null;
         String ohn = persona.gettInfo().getOhn();
         String nombre = persona.gettInfo().getNombre();
-        if (ohn.equals("First")){
+        if (ohn.contains("First")){
             generacion = nombre;
-        } else if (ohn.equals("Second")){
+        } else if (ohn.contains("Second")){
             generacion = nombre+" II";
-        } else if (ohn.equals("Third")){
+        } else if (ohn.contains("Third")){
             generacion = nombre+" III";
         } else {
             generacion = nombre+" IV";
@@ -58,8 +58,8 @@ public class Inicializar {
         NodoLista aux;
         aux = this.weds.getPrimero();
         boolean encontrado = false;
-        while (aux != null & !encontrado){
-            if (aux.getDatos().equals(wed)) {
+        while (aux != null && !encontrado){
+            if (aux.getDatos().contains(wed)) {
                 encontrado = true;
             } else {
                 aux = aux.getPnext();
@@ -208,7 +208,7 @@ public class Inicializar {
                                 for (int z = 0; z < l_hijos.size(); z++){
                                     //Se obtiene el nombre y se le agrega el apellido
                                     Hnombre = l_hijos.get(z).getAsString();
-                                    Hnombre = Hnombre+" "+apellido;
+                                    Hnombre = Hnombre +" "+ apellido;
                                     
                                     String generacion = null;
                                     String g2 = null;
@@ -216,13 +216,13 @@ public class Inicializar {
                                     
                                     if (Hnombre.equals(nombre)){
                                         
-                                        if (ohn.equals("First")){
+                                        if (ohn.contains("First")){
                                             generacion = "Second";
                                             g2 = " II";
-                                        } else if (ohn.equals("Second")){
+                                        } else if (ohn.contains("Second")){
                                             generacion = "Third";
                                             g2 = " III";
-                                        } else if (ohn.equals("Third")){
+                                        } else if (ohn.contains("Third")){
                                             generacion = "Fourth";
                                             g2 = " IV";
                                         }
