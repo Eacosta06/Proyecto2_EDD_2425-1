@@ -19,14 +19,13 @@ import Estructuras.*;
  * para convertirlo en el árbol genealógico.
  */
 public class Inicializar {
-    Graph grafo;
-    Arbol arbol;
+
     Lista weds;
 
     public Inicializar() {
     }
     
-    public void NodosHijos(Nodo hijo_izq, String padre, String wed){
+    /*public void NodosHijos(Nodo hijo_izq, String padre, String wed){
         Nodo aux = hijo_izq;
         while (aux != null){
             String name;
@@ -36,7 +35,7 @@ public class Inicializar {
                 Edge borde2 = grafo.addEdge(name+" & "+wed, wed, name);
             }
         }
-    }
+    }*/
     
     public String Generacion(Nodo persona){
         String generacion = null;
@@ -82,16 +81,16 @@ public class Inicializar {
         for (String casa : casas){
             
             //Se crea el el árbol genealógico vacío
-            this.arbol = new Arbol();
-            this.arbol.setNombre(casa);
+            InterfazSeleccion.arbol = new Arbol();
+            InterfazSeleccion.arbol.setNombre(casa);
             
             //Se crea la lista de parejas. Estas no pueden ser accedidas desde
             //el árbol genealógico por limitaciones de la estructura
             this.weds = new Lista();
             
             //Se debe crear un nuevo grafo
-            System.setProperty("org.graphstream.ui", "swing");
-            grafo = new MultiGraph(casa);
+            //System.setProperty("org.graphstream.ui", "swing");
+            //grafo = new MultiGraph(casa);
             
             JsonElement Json_nombres = iterable.get(casa);
             JsonArray l_nombres = Json_nombres.getAsJsonArray();
@@ -111,15 +110,15 @@ public class Inicializar {
                     JsonArray l_datos = Json_datos.getAsJsonArray();
                     
                     //Se declaran los String de los datos de la persona
-                    String ohn = null;
-                    String bt = null;
-                    String kta = null;
-                    String ht = null;
-                    String wt = null;
-                    String oe = null;
-                    String of = null;
-                    String Notas = null;
-                    String Destino = null;
+                    String ohn = "×";
+                    String bt = "×";
+                    String kta = "×";
+                    String ht = "×";
+                    String wt = "×";
+                    String oe = "×";
+                    String of = "×";
+                    String Notas = "×";
+                    String Destino = "×";
                     Nodo bornto = null;
                     Nodo hijo_izq = null;
                     NodoLista wed;
@@ -167,14 +166,14 @@ public class Inicializar {
                                 //Se revisa que la lista de casados no sea vacía
                                 if (this.weds.getPrimero() == null){
                                     this.weds.agregarALaLista(wt);
-                                    Node node = grafo.addNode(wt);
-                                    node.setAttribute("ui.label", wt);
+                                    //Node node = grafo.addNode(wt);
+                                    //node.setAttribute("ui.label", wt);
                                 } else {
                                     wed = this.BuscarLista(wt);
                                     if (wed == null){
                                         this.weds.agregarALaLista(wt);
-                                        Node node = grafo.addNode(wt);
-                                        node.setAttribute("ui.label", wt);
+                                        //Node node = grafo.addNode(wt);
+                                        //node.setAttribute("ui.label", wt);
                                     }
                                 }
                                 
@@ -190,91 +189,41 @@ public class Inicializar {
                             } else if (dato.equals("Fate")){
                                 Destino = Propiedades.get(dato).getAsString();
                                 
-                            } else if (dato.equals("Father to")){
-                                
-                                //Se obtiene la lista de hijos como JsonArray
-                                JsonElement Json_hijos = Propiedades.get(dato);
-                                JsonArray l_hijos = Json_hijos.getAsJsonArray();
-                                
-                                Nodo hAnterior = null;
-                                Nodo child;
-                                
-                                //Se obtiene el apellido de la persona
-                                String[] Snombre = nombre.split(" ");
-                                String apellido = Snombre[1];
-                                String Hnombre;
-                                
-                                //Se recorre el JsonArray de hijos
-                                for (int z = 0; z < l_hijos.size(); z++){
-                                    //Se obtiene el nombre y se le agrega el apellido
-                                    Hnombre = l_hijos.get(z).getAsString();
-                                    Hnombre = Hnombre +" "+ apellido;
-                                    
-                                    String generacion = null;
-                                    String g2 = null;
-                                    Persona hijo;
-                                    
-                                    if (Hnombre.equals(nombre)){
-                                        
-                                        if (ohn.contains("First")){
-                                            generacion = "Second";
-                                            g2 = " II";
-                                        } else if (ohn.contains("Second")){
-                                            generacion = "Third";
-                                            g2 = " III";
-                                        } else if (ohn.contains("Third")){
-                                            generacion = "Fourth";
-                                            g2 = " IV";
-                                        }
-                                    } else {
-                                        generacion = "First";
-                                        g2 = null;
-                                    }
-                                    
-                                    hijo = new Persona(Hnombre, generacion, null, null, null, null, null, null, null, null);
-                                    child = new Nodo(hijo);
-                                    Node node = grafo.addNode(Hnombre+g2);
-                                    node.setAttribute("ui.label", Hnombre+g2);
-                                    
-                                    if (hAnterior == null){
-                                        //Se asigna child como el primer hijo
-                                        hAnterior = child;
-                                        hijo_izq = child;
-                                    } else {
-                                        //Se asigna child como un hijo derecho
-                                        hAnterior.setHermanoDer(child);
-                                        hAnterior = child;
-                                    }
-                                    
-                                }
                             }
                             
                         }
                         
                     }
+                    if (kta.equalsIgnoreCase("×")){
+                        kta = nombre + ", " + ohn + " of his name";
+                    }
+                    Nodo nuevoNodo =null;
+                    Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                    if (InterfazSeleccion.arbol.esVacio()){
+                    nuevoNodo = InterfazSeleccion.arbol.agregarNodo(person, "");
                     
-                    if (this.arbol.esVacio()){
-                        Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
-                        Nperson = new Nodo(person);
-                        Nperson.setHijoIzq(hijo_izq);
-                        this.arbol.setpRoot(Nperson);
-                        Node node = grafo.addNode(nombre);
-                        node.setAttribute("ui.label", nombre);
+                    }
+                    else {
+
+                       nuevoNodo = InterfazSeleccion.arbol.agregarNodo(person, bt);
+                    }
+                    if (nuevoNodo != null){
+                        InterfazSeleccion.tabla.agregarElemento(nuevoNodo);
+                    }
+                    
+                    /*if (InterfazSeleccion.arbol.esVacio()){
+                        //Node node = grafo.addNode(nombre);
+                        //node.setAttribute("ui.label", nombre);
                     } else {
-                        Nperson = this.arbol.buscarNombreOhn(nombre, this.arbol.getpRoot(), ohn);
+                        Nperson = InterfazSeleccion.arbol.buscarNombreOhn(nombre, InterfazSeleccion.arbol.getpRoot(), ohn);
                         if (Nperson == null){
-                            Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
-                            Nperson = new Nodo(person);
-                            Nperson.setHijoIzq(hijo_izq);
-                            Node node = grafo.addNode(this.Generacion(Nperson));
+                            /*Node node = grafo.addNode(this.Generacion(Nperson));
                             node.setAttribute("ui.label", this.Generacion(Nperson));
                             this.NodosHijos(hijo_izq, this.Generacion(Nperson), wt);
                         } else {
-                            Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
-                            Nperson.setHijoIzq(hijo_izq);
-                            this.NodosHijos(hijo_izq, nombre, wt);
+                            //this.NodosHijos(hijo_izq, nombre, wt);
                         }
-                    }
+                    }*/
                 }
             }
             
@@ -282,14 +231,7 @@ public class Inicializar {
         }
     }
 
-    public Graph getGrafo() {
-        return grafo;
-    }
 
-    public Arbol getArbol() {
-        return arbol;
-    }
-    
     
     
 }

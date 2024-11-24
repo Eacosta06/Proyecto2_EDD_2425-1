@@ -43,7 +43,7 @@ public class Arbol {
 
     public Nodo buscarNodo(String kta, Nodo root) {
         if (root != null) {
-            if (root.gettInfo().getKta().equalsIgnoreCase(kta)) {
+            if (root.gettInfo().getKta().equalsIgnoreCase(kta) || root.gettInfo().getWt().equalsIgnoreCase(kta)){
                 return root;
             }
             Nodo respuesta = this.buscarNodo(kta, root.getHijoIzq());
@@ -250,6 +250,20 @@ public class Arbol {
         return null;
     }
 
+    private void crearGrafo (Nodo root, boolean primeraLlamada){
+        if (root != null && !primeraLlamada){
+            //Agregar el nodo al grafo de graphstream
+            crearGrafo(root.getHijoIzq());
+            crearGrafo(root.getHermanoDer());
+            
+        }
+    }
+    
+    public void crearGrafo (Nodo root){
+        //limpiar el grafo de graphstream y reiniciarlo para que se cree uno nuevo a partir de los nodos
+        crearGrafo(root, false);
+    }
+    
     
     
     

@@ -20,7 +20,6 @@ import org.graphstream.graph.Graph;
 public class Principal extends javax.swing.JFrame {
     Inicializar inicializar;
     Graph grafo;
-    Arbol arbol;
     Error error;
     InterfazSeleccion interfasSeleccion = null;
 
@@ -88,8 +87,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void EstablecerValores(){
-        arbol = this.inicializar.getArbol();
-        grafo = this.inicializar.getGrafo();
+        //grafo = this.inicializar.getGrafo();
     }
     
     private void SeleccionarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArchivoActionPerformed
@@ -118,13 +116,13 @@ public class Principal extends javax.swing.JFrame {
                     this.inicializar.Iniciar(Json);
                     this.setVisible(false);
                     
-                    this.interfasSeleccion.establecerValores(arbol, grafo);
                     this.interfasSeleccion.setVisible(true);
                     this.EstablecerValores();
                     JOptionPane.showMessageDialog(null, "Árbol generado de manera exitosa");
                     this.dispose();
                     
                 } catch (Exception e) {
+                    System.out.println(e);
                     this.error.mensaje_error(2);
                 }
                 
