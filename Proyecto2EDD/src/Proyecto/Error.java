@@ -85,9 +85,9 @@ public class Error extends javax.swing.JFrame {
     public void mensaje_error(int n){
         this.setVisible(true);
         if (n==1){
-            this.ErrorMessage.setText("El archivo seleccionado está vacío");
+            this.ErrorMessage.setText("El archivo seleccionado está vacío. Intente con otro archivo.");
         } else if (n==2){
-            this.ErrorMessage.setText("El archivo seleccionado es inválido");
+            this.ErrorMessage.setText("Ha ocurrido un error durante la generación del árbol. Intente con otro archivo.");
         }
     }
     

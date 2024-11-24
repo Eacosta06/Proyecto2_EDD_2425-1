@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/Users/carluchocp/Documents/15vo%20trimestre/Estructura%20de%20datos/proyecto2/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazSeleccion.java</file>
             <file>file:/Users/carluchocp/Documents/15vo%20trimestre/Estructura%20de%20datos/proyecto2/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Principal.java</file>
 =======
@@ -31,6 +32,24 @@
 >>>>>>> develop
 =======
             <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Principal.java</file>
+>>>>>>> develop
+=======
+            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Error.java</file>
+            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Inicializar.java</file>
+            <file>file:/Users/esteacosta/Documents/Unimet/Clases/IV%20Trimestre/Estructura%20de%20Datos/Proyectos/Proyecto2/Proyecto2EDD/src/Proyecto/Principal.java</file>
+=======
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazSeleccion.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazTitulo.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/Arbol.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazAntepasados.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Inicializar.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/Persona.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/Principal.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazGeneracion.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Proyecto/InterfazBuscarNombre.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/HashTable.java</file>
+            <file>file:/C:/Users/maria/Documents/Estructuras%20de%20Datos/Netbeans/Proyecto2_EDD_2425-1/Proyecto2_EDD_2425-1/Proyecto2EDD/src/Estructuras/HashTableNode.java</file>
+>>>>>>> bb75af2638bfddb9ce1d4de6c90061c8809b2ebe
 >>>>>>> develop
         </group>
     </open-files>

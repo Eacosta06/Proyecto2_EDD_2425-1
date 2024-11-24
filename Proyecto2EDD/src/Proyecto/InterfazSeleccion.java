@@ -4,10 +4,9 @@
  */
 package Proyecto;
 
-import Estructuras.Arbol;
-import Estructuras.HashTable;
-import Estructuras.Nodo;
-import Estructuras.Persona;
+import Estructuras.*;
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.*;
 
 /**
  *
@@ -158,6 +157,10 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
+    public void establecerValores(Arbol arbol, Graph grafo){
+        this.arbol = arbol;
+    }
+    
     /**
      * @param args the command line arguments
      */
