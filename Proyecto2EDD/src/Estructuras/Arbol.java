@@ -60,7 +60,7 @@ public class Arbol {
 
     public Nodo buscarNombreOhn(String nombre, Nodo root, String ohn){
         if (root != null) {
-            if (root.gettInfo().getNombre().equalsIgnoreCase(nombre) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)){
+            if (root.gettInfo().getNombre().equals(nombre) & root.gettInfo().getOhn().equals(ohn)){
                 return root;
             }
             Nodo respuesta =this.buscarNombreOhn(nombre,root.getHijoIzq(), ohn);

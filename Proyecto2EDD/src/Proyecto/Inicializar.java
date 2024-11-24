@@ -247,10 +247,6 @@ public class Inicializar {
                             Node node = grafo.addNode(this.Generacion(Nperson));
                             node.setAttribute("ui.label", this.Generacion(Nperson));
                             this.NodosHijos(hijo_izq, this.Generacion(Nperson));
-<<<<<<< HEAD
-                            //this.arbol.AnadirHijo(bornto, Nperson);
-=======
->>>>>>> c4b73b800cc2b6b364c3989c16ce6adbad763ed4
                         } else {
                             Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson.setHijoIzq(hijo_izq);
