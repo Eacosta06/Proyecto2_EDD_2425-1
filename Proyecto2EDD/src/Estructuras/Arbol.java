@@ -51,7 +51,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarNodo(kta, root.getHermanoDer());
-            if (respuesta != null) {
+            if (respuesta2 != null) {
                 return respuesta2;
             }
         }
@@ -68,7 +68,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarNombreOhn(nombre, root.getHermanoDer(), ohn);
-            if (respuesta != null){
+            if (respuesta2 != null){
                 return respuesta2;
             }
         }
@@ -85,7 +85,7 @@ public class Arbol {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarKtaOhn(kta, root.getHermanoDer(), ohn);
-            if (respuesta != null){
+            if (respuesta2 != null){
                 return respuesta2;
             }
         }
