@@ -5,6 +5,7 @@
 package Proyecto;
 
 import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
 import com.google.gson.*;
 import java.util.Set;
 import Estructuras.*;
@@ -20,13 +21,52 @@ import Estructuras.*;
 public class Inicializar {
     Graph grafo;
     Arbol arbol;
-    Nodo nodo;
-    HashTable hash;
+    Lista weds;
 
     public Inicializar() {
     }
     
+    public void NodosHijos(Nodo hijo_izq, String padre, String wed){
+        Nodo aux = hijo_izq;
+        while (aux != null){
+            String name;
+            name = this.Generacion(aux);
+            Edge borde = grafo.addEdge(name+" & "+padre, padre, name);
+            if (wed != null){
+                Edge borde2 = grafo.addEdge(name+" & "+wed, wed, name);
+            }
+        }
+    }
     
+    public String Generacion(Nodo persona){
+        String generacion = null;
+        String ohn = persona.gettInfo().getOhn();
+        String nombre = persona.gettInfo().getNombre();
+        if (ohn.equals("First")){
+            generacion = nombre;
+        } else if (ohn.equals("Second")){
+            generacion = nombre+" II";
+        } else if (ohn.equals("Third")){
+            generacion = nombre+" III";
+        } else {
+            generacion = nombre+" IV";
+        }
+        return generacion;
+    }
+    
+    public NodoLista BuscarLista(String wed){
+        NodoLista aux;
+        aux = this.weds.getPrimero();
+        boolean encontrado = false;
+        while (aux != null & !encontrado){
+            if (aux.getDatos().equals(wed)) {
+                encontrado = true;
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+        return aux;
+    }
     
     public void Iniciar(String JsonString){
         
@@ -45,14 +85,16 @@ public class Inicializar {
             this.arbol = new Arbol();
             this.arbol.setNombre(casa);
             
+            //Se crea la lista de parejas. Estas no pueden ser accedidas desde
+            //el árbol genealógico por limitaciones de la estructura
+            this.weds = new Lista();
+            
             //Se debe crear un nuevo grafo
+            System.setProperty("org.graphstream.ui", "swing");
+            grafo = new MultiGraph(casa);
             
             JsonElement Json_nombres = iterable.get(casa);
             JsonArray l_nombres = Json_nombres.getAsJsonArray();
-            
-            //Se establece un grafo vacío.
-            System.setProperty("org.graphstream.ui", "swing");
-            //grafo = new MultiGraph(casa);
             
             for (int i = 0; i < l_nombres.size(); i++){
                 
@@ -78,15 +120,17 @@ public class Inicializar {
                     String of = null;
                     String Notas = null;
                     String Destino = null;
+                    Nodo bornto = null;
+                    Nodo hijo_izq = null;
+                    NodoLista wed;
                     
-                    //Array hijos;
-                    
+                    //Se recorren todos los datos de la persona
                     for (int j = 0; j < l_datos.size(); j++){
                         
                         JsonObject Propiedades = l_datos.get(j).getAsJsonObject();
                         Set<String> properties = Propiedades.keySet();
                         
-                        
+                        //Se obtienen los datos usando las llaves y se asignan
                         for (String dato : properties){
                             
                             //Se obtienen los datos del JsonObject y se
@@ -96,6 +140,20 @@ public class Inicializar {
                                 
                             } else if (dato.equals("Born to")){
                                 bt = Propiedades.get(dato).getAsString();
+                                //Se comprueba que se conozca el padre
+                                
+                                if (!bt.equals("[Unknown]")){
+                                    //Se separa el string obtenido en un array
+                                    /*
+                                    String[] l = bt.split(", ");
+                                    //Se separa el string 2
+                                    String[] Gen = l[1].split(" ");
+                                    bornto = this.arbol.buscarYretornar(l[0], Gen[0], 1);
+                                    if (bornto == null){
+                                        bornto = this.arbol.buscarYretornar(l[0], Gen[0], 2);
+                                    }
+                                    */
+                                }
                                 
                             } else if (dato.equals("Known throughout as")){
                                 kta = Propiedades.get(dato).getAsString();
@@ -105,6 +163,20 @@ public class Inicializar {
                                 
                             } else if (dato.equals("Wed to")){
                                 wt = Propiedades.get(dato).getAsString();
+                                
+                                //Se revisa que la lista de casados no sea vacía
+                                if (this.weds.getPrimero() == null){
+                                    this.weds.agregarALaLista(wt);
+                                    Node node = grafo.addNode(wt);
+                                    node.setAttribute("ui.label", wt);
+                                } else {
+                                    wed = this.BuscarLista(wt);
+                                    if (wed == null){
+                                        this.weds.agregarALaLista(wt);
+                                        Node node = grafo.addNode(wt);
+                                        node.setAttribute("ui.label", wt);
+                                    }
+                                }
                                 
                             } else if (dato.equals("Of eyes")){
                                 oe = Propiedades.get(dato).getAsString();
@@ -124,23 +196,84 @@ public class Inicializar {
                                 JsonElement Json_hijos = Propiedades.get(dato);
                                 JsonArray l_hijos = Json_hijos.getAsJsonArray();
                                 
-                                //Se itera la lista y se pasan los nombres a
-                                // un array de Strings
+                                Nodo hAnterior = null;
+                                Nodo child;
                                 
+                                //Se obtiene el apellido de la persona
+                                String[] Snombre = nombre.split(" ");
+                                String apellido = Snombre[1];
+                                String Hnombre;
+                                
+                                //Se recorre el JsonArray de hijos
+                                for (int z = 0; z < l_hijos.size(); z++){
+                                    //Se obtiene el nombre y se le agrega el apellido
+                                    Hnombre = l_hijos.get(z).getAsString();
+                                    Hnombre = Hnombre+" "+apellido;
+                                    
+                                    String generacion = null;
+                                    String g2 = null;
+                                    Persona hijo;
+                                    
+                                    if (Hnombre.equals(nombre)){
+                                        
+                                        if (ohn.equals("First")){
+                                            generacion = "Second";
+                                            g2 = " II";
+                                        } else if (ohn.equals("Second")){
+                                            generacion = "Third";
+                                            g2 = " III";
+                                        } else if (ohn.equals("Third")){
+                                            generacion = "Fourth";
+                                            g2 = " IV";
+                                        }
+                                    } else {
+                                        generacion = "First";
+                                        g2 = null;
+                                    }
+                                    
+                                    hijo = new Persona(Hnombre, generacion, null, null, null, null, null, null, null, null);
+                                    child = new Nodo(hijo);
+                                    Node node = grafo.addNode(Hnombre+g2);
+                                    node.setAttribute("ui.label", Hnombre+g2);
+                                    
+                                    if (hAnterior == null){
+                                        //Se asigna child como el primer hijo
+                                        hAnterior = child;
+                                        hijo_izq = child;
+                                    } else {
+                                        //Se asigna child como un hijo derecho
+                                        hAnterior.setHermanoDer(child);
+                                        hAnterior = child;
+                                    }
+                                    
+                                }
                             }
-                            
                             
                         }
                         
-                       
                     }
                     
                     if (this.arbol.esVacio()){
                         Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                         Nperson = new Nodo(person);
+                        Nperson.setHijoIzq(hijo_izq);
                         this.arbol.setpRoot(Nperson);
+                        Node node = grafo.addNode(nombre);
+                        node.setAttribute("ui.label", nombre);
                     } else {
-                        
+                        Nperson = this.arbol.buscarNombreOhn(nombre, this.arbol.getpRoot(), ohn);
+                        if (Nperson == null){
+                            Persona person = new Persona(nombre, ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                            Nperson = new Nodo(person);
+                            Nperson.setHijoIzq(hijo_izq);
+                            Node node = grafo.addNode(this.Generacion(Nperson));
+                            node.setAttribute("ui.label", this.Generacion(Nperson));
+                            this.NodosHijos(hijo_izq, this.Generacion(Nperson), wt);
+                        } else {
+                            Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
+                            Nperson.setHijoIzq(hijo_izq);
+                            this.NodosHijos(hijo_izq, nombre, wt);
+                        }
                     }
                 }
             }
@@ -148,13 +281,15 @@ public class Inicializar {
             
         }
     }
-    
-    public Graph retornar_grafo(){
+
+    public Graph getGrafo() {
         return grafo;
     }
-    
-    public Arbol retornar_arbol(){
+
+    public Arbol getArbol() {
         return arbol;
     }
+    
+    
     
 }
