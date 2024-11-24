@@ -28,12 +28,15 @@ public class Inicializar {
     public Inicializar() {
     }
     
-    public void NodosHijos(Nodo hijo_izq, String padre){
+    public void NodosHijos(Nodo hijo_izq, String padre, String wed){
         Nodo aux = hijo_izq;
         while (aux != null){
             String name;
             name = this.Generacion(aux);
             Edge borde = grafo.addEdge(name+" & "+padre, padre, name);
+            if (wed != null){
+                Edge borde2 = grafo.addEdge(name+" & "+wed, wed, name);
+            }
         }
     }
     
@@ -51,6 +54,20 @@ public class Inicializar {
             generacion = nombre+" IV";
         }
         return generacion;
+    }
+    
+    public NodoLista BuscarLista(String wed){
+        NodoLista aux;
+        aux = this.weds.getPrimero();
+        boolean encontrado = false;
+        while (aux != null & !encontrado){
+            if (aux.getDatos().equals(wed)) {
+                encontrado = true;
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+        return aux;
     }
     
     public void Iniciar(String JsonString){
@@ -151,9 +168,16 @@ public class Inicializar {
                                 
                                 //Se revisa que la lista de casados no sea vacía
                                 if (this.weds.getPrimero() == null){
-                                    wed = new NodoLista(wt);
+                                    this.weds.agregarALaLista(wt);
+                                    Node node = grafo.addNode(wt);
+                                    node.setAttribute("ui.label", wt);
                                 } else {
-                                    //Se busca en la lista
+                                    wed = this.BuscarLista(wt);
+                                    if (wed == null){
+                                        this.weds.agregarALaLista(wt);
+                                        Node node = grafo.addNode(wt);
+                                        node.setAttribute("ui.label", wt);
+                                    }
                                 }
                                 
                             } else if (dato.equals("Of eyes")){
@@ -246,11 +270,11 @@ public class Inicializar {
                             Nperson.setHijoIzq(hijo_izq);
                             Node node = grafo.addNode(this.Generacion(Nperson));
                             node.setAttribute("ui.label", this.Generacion(Nperson));
-                            this.NodosHijos(hijo_izq, this.Generacion(Nperson));
+                            this.NodosHijos(hijo_izq, this.Generacion(Nperson), wt);
                         } else {
                             Nperson.gettInfo().agregarData(ohn, bt, kta, ht, wt, oe, of, Notas, Destino);
                             Nperson.setHijoIzq(hijo_izq);
-                            this.NodosHijos(hijo_izq, nombre);
+                            this.NodosHijos(hijo_izq, nombre, wt);
                         }
                     }
                 }
