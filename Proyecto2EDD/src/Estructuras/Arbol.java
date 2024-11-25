@@ -46,7 +46,7 @@ public class Arbol {
 
     public Nodo buscarNodo(String kta, Nodo root) {
         if (root != null) {
-            if (root.gettInfo().getKta().equalsIgnoreCase(kta) || root.gettInfo().getWt().equalsIgnoreCase(kta)){
+            if (root.gettInfo().getKta().equalsIgnoreCase(kta) || root.gettInfo().getWt().equalsIgnoreCase(kta)) {
                 return root;
             }
             Nodo respuesta = this.buscarNodo(kta, root.getHijoIzq());
@@ -61,41 +61,41 @@ public class Arbol {
         return null;
     }
 
-    public Nodo buscarNombreOhn(String nombre, Nodo root, String ohn){
+    public Nodo buscarNombreOhn(String nombre, Nodo root, String ohn) {
         if (root != null) {
-            if (root.gettInfo().getNombre().equalsIgnoreCase(nombre) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)){
+            if (root.gettInfo().getNombre().equalsIgnoreCase(nombre) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)) {
                 return root;
             }
-            Nodo respuesta =this.buscarNombreOhn(nombre,root.getHijoIzq(), ohn);
-            if (respuesta != null){
+            Nodo respuesta = this.buscarNombreOhn(nombre, root.getHijoIzq(), ohn);
+            if (respuesta != null) {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarNombreOhn(nombre, root.getHermanoDer(), ohn);
-            if (respuesta2 != null){
+            if (respuesta2 != null) {
                 return respuesta2;
             }
         }
         return null;
     }
-    
-    public Nodo buscarKtaOhn(String kta, Nodo root, String ohn){
+
+    public Nodo buscarKtaOhn(String kta, Nodo root, String ohn) {
         if (root != null) {
-            if (root.gettInfo().getKta().equalsIgnoreCase(kta) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)){
+            if (root.gettInfo().getKta().equalsIgnoreCase(kta) & root.gettInfo().getOhn().equalsIgnoreCase(ohn)) {
                 return root;
             }
-            Nodo respuesta =this.buscarKtaOhn(kta,root.getHijoIzq(), ohn);
-            if (respuesta != null){
+            Nodo respuesta = this.buscarKtaOhn(kta, root.getHijoIzq(), ohn);
+            if (respuesta != null) {
                 return respuesta;
             }
             Nodo respuesta2 = this.buscarKtaOhn(kta, root.getHermanoDer(), ohn);
-            if (respuesta2 != null){
+            if (respuesta2 != null) {
                 return respuesta2;
             }
         }
         return null;
     }
-    
-    public Nodo agregarNodo (Persona persona, String ktaPadre){
+
+    public Nodo agregarNodo(Persona persona, String ktaPadre) {
         Nodo nodoPersona = new Nodo(persona);
         if (this.esVacio()) {
             pRoot = nodoPersona;
@@ -149,24 +149,24 @@ public class Arbol {
         }
         return resultado;
     }
-    
-    public Nodo buscarYretornar(String name, String ohn, int n){
+
+    public Nodo buscarYretornar(String name, String ohn, int n) {
         Nodo encontrado;
-        if (pRoot == null){
+        if (pRoot == null) {
             return null;
         }
-        if (n == 1){
+        if (n == 1) {
             encontrado = this.buscarNombreOhn(name, pRoot, ohn);
         } else {
             encontrado = this.buscarKtaOhn(name, pRoot, ohn);
         }
-        
+
         return encontrado;
     }
-    
-    public void AnadirHijo(Nodo root, Nodo persona){
+
+    public void AnadirHijo(Nodo root, Nodo persona) {
         Nodo aux = root.getHijoIzq();
-        while (aux.getHermanoDer() != null){
+        while (aux.getHermanoDer() != null) {
             aux = aux.getHermanoDer();
         }
         aux.setHermanoDer(persona);
@@ -226,8 +226,8 @@ public class Arbol {
         }
         return resultado;
     }
-    
-      public Nodo buscarPorNombreyPosicion(String nombre, String Ohn) {
+
+    public Nodo buscarPorNombreyPosicion(String nombre, String Ohn) {
         return this.buscarPorNombreyPosicion(nombre.toLowerCase(), this.pRoot);
 
     }
@@ -239,115 +239,117 @@ public class Arbol {
             }
             Nodo resultado = this.buscarNodo(nombre, root.getHijoIzq());
             resultado = this.buscarPorNombreyPosicion(nombre, root.getHijoIzq());
-            
-            if (resultado != null){
+
+            if (resultado != null) {
                 return resultado;
             }
             Nodo resultado2 = this.buscarNodo(nombre, root.getHermanoDer());
             resultado2 = this.buscarPorNombreyPosicion(nombre, root.getHermanoDer());
-            
-            if (resultado2 != null){
+
+            if (resultado2 != null) {
                 return resultado;
             }
         }
         return null;
     }
 
-    private Graph crearGrafo (Nodo root, boolean primeraLlamada, Graph grafo, String padre){
-        
+    private Graph crearGrafo(Nodo root, boolean primeraLlamada, Graph grafo, String padre) {
+
         String nombre = root.gettInfo().getNombre();
         String generacion = root.gettInfo().getOhn();
-        if (generacion.equals("First")){
+        if (generacion.equals("First")) {
             generacion = null;
-        } else if (generacion.equals("Second")){
+        } else if (generacion.equals("Second")) {
             generacion = " II";
         } else if (generacion.equals("Third")) {
             generacion = " III";
         } else {
             generacion = " IV";
         }
-        if (root != null && !primeraLlamada){
+        if (root != null && !primeraLlamada) {
             //Agregar el nodo al grafo de graphstream
-            Node node = grafo.addNode(nombre+generacion);
-            node.setAttribute("ui.label", nombre+generacion);
-            Edge edge = grafo.addEdge(nombre+generacion, padre, nombre+generacion);
-            
+            Node node = grafo.addNode(nombre + generacion);
+            node.setAttribute("ui.label", nombre + generacion);
+            Edge edge = grafo.addEdge(nombre + generacion, padre, nombre + generacion);
+
             //Se llama al hermano derecho con el mismo padre
             grafo = crearGrafo(root.getHermanoDer(), false, grafo, padre);
             //Se cambia el padre al nodo actual y se llama a sus hijos
-            padre = nombre+generacion;
+            padre = nombre + generacion;
             grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
-            
+
         } else {
-            Node node = grafo.addNode(nombre+generacion);
-            padre = nombre+generacion;
+            Node node = grafo.addNode(nombre + generacion);
+            padre = nombre + generacion;
             grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
         }
-        
+
         return grafo;
     }
-    
-    public Graph crearGrafo (Nodo root, Graph grafo){
+
+    public Graph crearGrafo(Nodo root, Graph grafo) {
         //Se hace el primer llamado a la funcion;
         grafo = crearGrafo(root, true, grafo, null);
         return grafo;
     }
-    
-    private boolean buscarNodo(Nodo root, Nodo buscar){
+
+    private boolean buscarNodo(Nodo root, Nodo buscar) {
         /*
         esta función busca un nodo específico dentro del árbol
-        */
+         */
         boolean encontrado;
-        if (root == buscar){
+        if (root == buscar) {
             encontrado = true;
         } else {
             encontrado = buscarNodo(root.getHijoIzq(), buscar);
-            if (!encontrado){
+            if (!encontrado) {
                 encontrado = buscarNodo(root.getHermanoDer(), buscar);
             }
         }
         return encontrado;
     }
-    
-    private Graph GrafoAncestro(Nodo root, Graph grafo, Nodo buscar, String padre){
+
+    private Graph GrafoAncestro(Nodo root, Graph grafo, Nodo buscar, String padre) {
         /*
         Esta función crea nodos y bordes en graphstream para los nodos padre
         de un nodo dado
-        */
+         */
+        if (root == null) {
+            return grafo;
+        }
         String name = root.gettInfo().getNombre();
         String generacion = root.gettInfo().getOhn();
-        if (generacion.equals("First")){
-            generacion = null;
-        } else if (generacion.equals("Second")){
+        if (generacion.equals("First")) {
+            generacion = "I";
+        } else if (generacion.equals("Second")) {
             generacion = " II";
         } else if (generacion.equals("Third")) {
             generacion = " III";
         } else {
             generacion = " IV";
         }
-        
-        name = name+generacion;
-        
-        if (buscarNodo(root, buscar)){
+
+        name = name + " "+ generacion;
+
+        if (buscarNodo(root, buscar)) {
             Node nodo = grafo.addNode(name);
-            if (padre != null){
+            if (padre != null) {
                 Edge edge = grafo.addEdge(name, padre, name);
             }
-            if (buscarNodo(root.getHijoIzq(), buscar)){
+            if (buscarNodo(root.getHijoIzq(), buscar)) {
                 grafo = GrafoAncestro(root.getHijoIzq(), grafo, buscar, name);
-            } else if (buscarNodo(root.getHermanoDer(), buscar)){
-                grafo = GrafoAncestro(root.getHijoIzq(), grafo, buscar, name);
+            } else if (buscarNodo(root.getHermanoDer(), buscar)) {
+                grafo = GrafoAncestro(root.getHermanoDer(), grafo, buscar, name);
             }
         }
-        
+
         return grafo;
     }
-    
-    public Graph grafoAncestro (Nodo root, Graph grafo, Nodo buscar){
-        
+
+    public Graph grafoAncestro(Nodo root, Graph grafo, Nodo buscar) {
+
         grafo = GrafoAncestro(root, grafo, buscar, null);
         return grafo;
     }
-    
-    
+
 }
