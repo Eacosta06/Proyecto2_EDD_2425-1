@@ -333,6 +333,7 @@ public class Arbol {
 
         if (buscarNodo(root, buscar)) {
             Node nodo = grafo.addNode(name);
+            nodo.setAttribute("ui.label", name);
             if (padre != null) {
                 Edge edge = grafo.addEdge(name, padre, name);
             }
