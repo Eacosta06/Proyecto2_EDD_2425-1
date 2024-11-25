@@ -25,17 +25,6 @@ public class Inicializar {
     public Inicializar() {
     }
     
-    /*public void NodosHijos(Nodo hijo_izq, String padre, String wed){
-        Nodo aux = hijo_izq;
-        while (aux != null){
-            String name;
-            name = this.Generacion(aux);
-            Edge borde = grafo.addEdge(name+" & "+padre, padre, name);
-            if (wed != null){
-                Edge borde2 = grafo.addEdge(name+" & "+wed, wed, name);
-            }
-        }
-    }*/
     
     public String Generacion(Nodo persona){
         String generacion = null;
@@ -84,13 +73,10 @@ public class Inicializar {
             InterfazSeleccion.arbol = new Arbol();
             InterfazSeleccion.arbol.setNombre(casa);
             
-            //Se crea la lista de parejas. Estas no pueden ser accedidas desde
-            //el árbol genealógico por limitaciones de la estructura
+            
             this.weds = new Lista();
             
-            //Se debe crear un nuevo grafo
-            //System.setProperty("org.graphstream.ui", "swing");
-            //grafo = new MultiGraph(casa);
+            
             
             JsonElement Json_nombres = iterable.get(casa);
             JsonArray l_nombres = Json_nombres.getAsJsonArray();
@@ -211,19 +197,7 @@ public class Inicializar {
                         InterfazSeleccion.tabla.agregarElemento(nuevoNodo);
                     }
                     
-                    /*if (InterfazSeleccion.arbol.esVacio()){
-                        //Node node = grafo.addNode(nombre);
-                        //node.setAttribute("ui.label", nombre);
-                    } else {
-                        Nperson = InterfazSeleccion.arbol.buscarNombreOhn(nombre, InterfazSeleccion.arbol.getpRoot(), ohn);
-                        if (Nperson == null){
-                            /*Node node = grafo.addNode(this.Generacion(Nperson));
-                            node.setAttribute("ui.label", this.Generacion(Nperson));
-                            this.NodosHijos(hijo_izq, this.Generacion(Nperson), wt);
-                        } else {
-                            //this.NodosHijos(hijo_izq, nombre, wt);
-                        }
-                    }*/
+                    
                 }
             }
             

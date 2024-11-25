@@ -22,18 +22,6 @@ public class InterfazSeleccion extends javax.swing.JFrame {
      */
     public InterfazSeleccion() {
         initComponents();
-        Persona persona1 = new Persona ("Hola", "amarillo", "azul", "Chao", "morado", "rojo", "rosado", "blanco", "", "");
-        Persona persona2 = new Persona ("aHelloo", "verde", "gris", "chaito", "morado", "", "", "", "", "");
-        Persona persona3 = new Persona ("Holaaa", "azul", "negro", "hello", "blanco", "", "", "", "", "");
-        Persona persona4 = new Persona ("epa", "gris", "dorado", "epaaaaa", "plateado", "", "", "", "", "");
-        Nodo nodoPersona1 = arbol.agregarNodo(persona1, "");
-        Nodo nodoPersona2 = arbol.agregarNodo(persona2, "Chao");
-        Nodo nodoPersona3 = arbol.agregarNodo(persona3, "Chao");
-        Nodo nodoPersona4 = arbol.agregarNodo(persona4, "hello");;
-        tabla.agregarElemento(nodoPersona1);
-        tabla.agregarElemento(nodoPersona2);
-        tabla.agregarElemento(nodoPersona3);
-        tabla.agregarElemento(nodoPersona4);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         
@@ -55,6 +43,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         MostrarAntepasados = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         volver = new javax.swing.JButton();
+        verArbol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +51,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
         jLabel1.setText("Arbol Genealogico");
-        Base.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        Base.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
 
         BuscarNombre.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         BuscarNombre.setText("Buscar por nombre");
@@ -71,7 +60,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
                 BuscarNombreActionPerformed(evt);
             }
         });
-        Base.add(BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        Base.add(BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
         buscarTitulo.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         buscarTitulo.setText("Buscar por titulo");
@@ -80,7 +69,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
                 buscarTituloActionPerformed(evt);
             }
         });
-        Base.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        Base.add(buscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         MostrarAntepasados.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         MostrarAntepasados.setText("Mostrar Antepasados");
@@ -89,7 +78,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
                 MostrarAntepasadosActionPerformed(evt);
             }
         });
-        Base.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, -1, -1));
+        Base.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 100, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jButton2.setText("Buscar una generacion");
@@ -98,15 +87,25 @@ public class InterfazSeleccion extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        Base.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
+        Base.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
+        volver.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         volver.setText("Cambiar de archivo");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 volverActionPerformed(evt);
             }
         });
-        Base.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
+        Base.add(volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, -1, -1));
+
+        verArbol.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        verArbol.setText("Ver arbol completo");
+        verArbol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verArbolActionPerformed(evt);
+            }
+        });
+        Base.add(verArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,6 +156,12 @@ public class InterfazSeleccion extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
+    private void verArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verArbolActionPerformed
+        // TODO add your handling code here:
+        this.arbol.crearGrafo(this.arbol.getpRoot());
+        this.arbol.getGrafo().display(true);
+    }//GEN-LAST:event_verArbolActionPerformed
+
     public void establecerValores(Arbol arbol, Graph grafo){
         this.arbol = arbol;
     }
@@ -203,6 +208,7 @@ public class InterfazSeleccion extends javax.swing.JFrame {
     private javax.swing.JButton buscarTitulo;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton verArbol;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }
