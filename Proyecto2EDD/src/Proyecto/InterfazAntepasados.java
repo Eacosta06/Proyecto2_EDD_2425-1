@@ -17,7 +17,6 @@ import org.graphstream.graph.implementations.*;
  */
 public class InterfazAntepasados extends javax.swing.JFrame {
     private InterfazSeleccion interfazSeleccion;
-    private Graph grafo;
     /**
      * Creates new form InterfazAntepasados
      * @param interfazSeleccion
@@ -25,6 +24,7 @@ public class InterfazAntepasados extends javax.swing.JFrame {
     public InterfazAntepasados(InterfazSeleccion interfazSeleccion) {
         initComponents();
         this.interfazSeleccion = interfazSeleccion;
+        
     }
 
     /**
@@ -155,8 +155,8 @@ public class InterfazAntepasados extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         // TODO add your handling code here:
         this.interfazSeleccion.setVisible(true);
-        this.grafo.display(false);
-        this.grafo.clear();
+        //InterfazSeleccion.arbol.getGrafo().display(false);
+        //InterfazSeleccion.arbol.getGrafo().clear();
         this.dispose();
     }//GEN-LAST:event_volverActionPerformed
 
@@ -179,16 +179,17 @@ public class InterfazAntepasados extends javax.swing.JFrame {
 
     private void mostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarArbolActionPerformed
         // TODO add your handling code here:
+        
         Object respuestaAntepasado = this.listaRespuesta.getSelectedItem();
         if (respuestaAntepasado == null) {
             JOptionPane.showMessageDialog(null, "Selecciona una de las opciones");
         } else {
             Nodo respuesta = InterfazSeleccion.tabla.buscarPorKta(respuestaAntepasado.toString());
             //Se debe hacer una función de recorrido
-            System.setProperty("org.graphstream.ui", "swing"); 
-            grafo = new MultiGraph("ancestros");
-            this.grafo = this.interfazSeleccion.arbol.grafoAncestro(interfazSeleccion.arbol.getpRoot(), grafo, respuesta);
-            grafo.display();
+            //System.out.println(respuesta);
+            this.interfazSeleccion.arbol.crearGrafoAncestros(respuesta);
+            this.interfazSeleccion.arbol.getGrafo().display(true);
+            
         }
     }//GEN-LAST:event_mostrarArbolActionPerformed
 

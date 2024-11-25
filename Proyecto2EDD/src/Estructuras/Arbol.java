@@ -17,10 +17,12 @@ public class Arbol {
 
     private Nodo pRoot;
     private String nombre;
+    private SingleGraph grafo;
 
     public Arbol() {
         this.nombre = "";
         this.pRoot = null;
+        this.grafo = new SingleGraph("ancestros");
     }
 
     public Nodo getpRoot() {
@@ -217,7 +219,7 @@ public class Arbol {
     private Lista buscarPorNombre(String nombre, Nodo root, Lista resultado) {
         if (root != null) {
             if (root.gettInfo().getNombre().toLowerCase().contains(nombre)) {
-                resultado.agregarALaLista(root.gettInfo().getNombre() + " " + root.gettInfo().getOhn());
+                resultado.agregarALaLista(root.gettInfo().getKta());
             }
             resultado = this.buscarPorNombre(nombre, root.getHijoIzq(), resultado);
 
@@ -253,44 +255,33 @@ public class Arbol {
         return null;
     }
 
-    private Graph crearGrafo(Nodo root, boolean primeraLlamada, Graph grafo, String padre) {
-
-        String nombre = root.gettInfo().getNombre();
-        String generacion = root.gettInfo().getOhn();
-        if (generacion.equals("First")) {
-            generacion = null;
-        } else if (generacion.equals("Second")) {
-            generacion = " II";
-        } else if (generacion.equals("Third")) {
-            generacion = " III";
-        } else {
-            generacion = " IV";
-        }
-        if (root != null && !primeraLlamada) {
+    private void crearGrafo(Nodo root, String padre, boolean esRaiz) {
+        if (root != null ) {
+            
             //Agregar el nodo al grafo de graphstream
-            Node node = grafo.addNode(nombre + generacion);
-            node.setAttribute("ui.label", nombre + generacion);
-            Edge edge = grafo.addEdge(nombre + generacion, padre, nombre + generacion);
-
-            //Se llama al hermano derecho con el mismo padre
-            grafo = crearGrafo(root.getHermanoDer(), false, grafo, padre);
+            Node node = grafo.addNode(root.gettInfo().getKta());
+            node.setAttribute("ui.label", root.gettInfo().getKta());
+            if (padre!= null){
+               Edge edge = grafo.addEdge(root.gettInfo().getKta()+ "-"+ padre, padre, root.gettInfo().getKta()); 
+            }
+            
+            if (!esRaiz){
+             //Se llama al hermano derecho con el mismo padre
+            crearGrafo(root.getHermanoDer(), padre,false); 
+            }
+            
             //Se cambia el padre al nodo actual y se llama a sus hijos
-            padre = nombre + generacion;
-            grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
+            crearGrafo(root.getHijoIzq(), root.gettInfo().getKta(),false);
 
-        } else {
-            Node node = grafo.addNode(nombre + generacion);
-            padre = nombre + generacion;
-            grafo = crearGrafo(root.getHijoIzq(), false, grafo, padre);
         }
 
-        return grafo;
     }
 
-    public Graph crearGrafo(Nodo root, Graph grafo) {
+    public void crearGrafo(Nodo root) {
         //Se hace el primer llamado a la funcion;
-        grafo = crearGrafo(root, true, grafo, null);
-        return grafo;
+        System.setProperty("org.graphstream.ui", "swing");
+        this.grafo.clear();
+        crearGrafo(root, null,true);
     }
 
     private boolean buscarNodo(Nodo root, Nodo buscar) {
@@ -298,6 +289,10 @@ public class Arbol {
         esta función busca un nodo específico dentro del árbol
          */
         boolean encontrado;
+        if (root == null) {
+            return false;
+        }
+
         if (root == buscar) {
             encontrado = true;
         } else {
@@ -312,48 +307,33 @@ public class Arbol {
         return encontrado;
     }
 
-    private Graph GrafoAncestro(Nodo root, Graph grafo, Nodo buscar, String padre) {
-        /*
-        Esta función crea nodos y bordes en graphstream para los nodos padre
-        de un nodo dado
-         */
-        if (root == null) {
-            return grafo;
-        }
-        String name = root.gettInfo().getNombre();
-        String generacion = root.gettInfo().getOhn();
-        if (generacion.equals("First")) {
-            generacion = "I";
-        } else if (generacion.equals("Second")) {
-            generacion = " II";
-        } else if (generacion.equals("Third")) {
-            generacion = " III";
-        } else {
-            generacion = " IV";
-        }
 
-        name = name + " "+ generacion;
-
-        if (buscarNodo(root, buscar)) {
-            Node nodo = grafo.addNode(name);
-            nodo.setAttribute("ui.label", name);
-            if (padre != null) {
-                Edge edge = grafo.addEdge(name, padre, name);
-            }
-            if (buscarNodo(root.getHijoIzq(), buscar)) {
-                grafo = GrafoAncestro(root.getHijoIzq(), grafo, buscar, name);
-            } else if (buscarNodo(root.getHermanoDer(), buscar)) {
-                grafo = GrafoAncestro(root.getHermanoDer(), grafo, buscar, name);
-            }
-        }
-
+    public SingleGraph getGrafo() {
         return grafo;
     }
 
-    public Graph grafoAncestro(Nodo root, Graph grafo, Nodo buscar) {
-
-        grafo = GrafoAncestro(root, grafo, buscar, null);
-        return grafo;
+    public void setGrafo(SingleGraph grafo) {
+        this.grafo = grafo;
+    }
+    
+    private void crearGrafoAncestros(Nodo root, String hijo) {
+        if (root != null ) {
+            
+            //Agregar el nodo al grafo de graphstream
+            Node node = grafo.addNode(root.gettInfo().getKta());
+            node.setAttribute("ui.label", root.gettInfo().getKta());
+            if (hijo!= null){
+               Edge edge = grafo.addEdge(root.gettInfo().getKta()+ "-"+ hijo, root.gettInfo().getKta(),hijo); 
+            }
+            //Se cambia el padre al nodo actual y se llama a sus hijos
+            crearGrafoAncestros(root.getPadre(), root.gettInfo().getKta());
+        }
     }
 
+    public void crearGrafoAncestros(Nodo root) {
+        //Se hace el primer llamado a la funcion;
+        System.setProperty("org.graphstream.ui", "swing");
+        this.grafo.clear();
+        crearGrafoAncestros(root, null);
+    }
 }

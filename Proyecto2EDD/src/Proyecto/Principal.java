@@ -21,7 +21,7 @@ public class Principal extends javax.swing.JFrame {
     Inicializar inicializar;
     Graph grafo;
     Error error;
-    InterfazSeleccion interfasSeleccion = null;
+    InterfazSeleccion interfazSeleccion = null;
 
     public Principal(InterfazSeleccion interfazSeleccion) {
         initComponents();
@@ -30,10 +30,10 @@ public class Principal extends javax.swing.JFrame {
         this.inicializar = new Inicializar();
         this.setResizable(false);
         
-        if (this.interfasSeleccion == null){
-            this.interfasSeleccion = new InterfazSeleccion ();
+        if (this.interfazSeleccion == null){
+            this.interfazSeleccion = new InterfazSeleccion ();
         }
-        else {this.interfasSeleccion = interfazSeleccion;
+        else {this.interfazSeleccion = interfazSeleccion;
         
         }
         
@@ -96,6 +96,8 @@ public class Principal extends javax.swing.JFrame {
         this.setVisible(false);
         String aux;
         String Json = "";
+        interfazSeleccion.tabla = new HashTable (57);
+        interfazSeleccion.arbol = new Arbol ();
         try {
             //Se obtiene el archivo del selector de archivos
             File archivo = this.SeleccionarArchivo.getSelectedFile();
@@ -116,7 +118,7 @@ public class Principal extends javax.swing.JFrame {
                     this.inicializar.Iniciar(Json);
                     this.setVisible(false);
                     
-                    this.interfasSeleccion.setVisible(true);
+                    this.interfazSeleccion.setVisible(true);
                     this.EstablecerValores();
                     JOptionPane.showMessageDialog(null, "Árbol generado de manera exitosa");
                     this.dispose();

@@ -166,6 +166,8 @@ public class InterfazBuscarNombre extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecciona una de las opciones");
         } else {
             Nodo respuesta = InterfazSeleccion.tabla.buscarPorKta(respuestakta.toString());
+            InterfazSeleccion.arbol.crearGrafo(respuesta);
+            InterfazSeleccion.arbol.getGrafo().display(true);
             this.Consola.setText(respuesta.gettInfo().toString());
 
         }
