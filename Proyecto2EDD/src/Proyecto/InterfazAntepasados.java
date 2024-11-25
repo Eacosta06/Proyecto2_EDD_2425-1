@@ -186,7 +186,7 @@ public class InterfazAntepasados extends javax.swing.JFrame {
             Nodo respuesta = InterfazSeleccion.tabla.buscarPorKta(respuestaAntepasado.toString());
             //Se debe hacer una función de recorrido
             System.setProperty("org.graphstream.ui", "swing"); 
-            grafo = new MultiGraph(respuestaAntepasado.toString());
+            grafo = new MultiGraph("ancestros");
             this.grafo = this.interfazSeleccion.arbol.grafoAncestro(interfazSeleccion.arbol.getpRoot(), grafo, respuesta);
             grafo.display();
         }

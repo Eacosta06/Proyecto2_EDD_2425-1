@@ -305,6 +305,9 @@ public class Arbol {
             if (!encontrado) {
                 encontrado = buscarNodo(root.getHermanoDer(), buscar);
             }
+            if (!encontrado){
+                encontrado = false;
+            }
         }
         return encontrado;
     }
